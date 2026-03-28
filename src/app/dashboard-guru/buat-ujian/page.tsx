@@ -214,7 +214,7 @@ export default function BuatUjianPage() {
               {currentQuestion.type === 'multiple_choice' && (
                 <>
                   <div className="grid grid-cols-2 gap-4">
-                    {currentQuestion.options.map((opt, i) => (
+                    {currentQuestion.options.map((opt: string, i: number) => (
                       <div key={i}>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Opsi {String.fromCharCode(65 + i)}</label>
                         <input
@@ -236,7 +236,7 @@ export default function BuatUjianPage() {
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                     >
                       <option value="">Pilih Jawaban</option>
-                      {currentQuestion.options.map((opt, i) => (
+                      {currentQuestion.options.map((opt: string, i: number) => (
                         <option key={i} value={opt}>{String.fromCharCode(65 + i)}. {opt}</option>
                       ))}
                     </select>
@@ -285,7 +285,7 @@ export default function BuatUjianPage() {
                         <p className="text-gray-700">{q.question}</p>
                         {q.type === 'multiple_choice' && (
                           <div className="mt-2 space-y-1">
-                            {q.options.map((opt, idx) => (
+                            {q.options.map((opt: string, idx: number) => (
                               <div key={idx} className={`text-sm ${
                                 opt === q.correctAnswer ? 'text-green-600 font-medium' : 'text-gray-600'
                               }`}>
