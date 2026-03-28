@@ -242,8 +242,8 @@ export default function LandingPage() {
             <div className="relative">
               <div className="relative z-10">
                 <img 
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=600&fit=crop" 
-                  alt="Student using LMS" 
+                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&h=600&fit=crop" 
+                  alt="Siswa SMP menggunakan LMS" 
                   className="rounded-3xl shadow-2xl"
                 />
               </div>
