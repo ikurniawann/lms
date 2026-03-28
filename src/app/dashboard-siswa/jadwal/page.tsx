@@ -2,7 +2,10 @@
 import { Calendar, Clock, BookOpen, Users } from 'lucide-react';
 
 export default function JadwalPage() {
-  const schedule = {
+  type ScheduleItem = { subject: string; time: string; teacher: string; room: string };
+  type Schedule = { [key: string]: ScheduleItem[] };
+  
+  const schedule: Schedule = {
     'Senin': [
       { subject: 'Matematika', time: '07:00 - 08:30', teacher: 'Budi Santoso, S.Pd', room: 'R.101' },
       { subject: 'IPA', time: '08:30 - 10:00', teacher: 'Siti Aminah, S.Pd', room: 'R.101' },
@@ -37,7 +40,7 @@ export default function JadwalPage() {
     { title: 'Ruangan', value: '8', icon: Calendar, color: 'orange' },
   ];
 
-  const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
+  const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'] as const;
 
   return (
     <div className="min-h-screen bg-gray-50">
