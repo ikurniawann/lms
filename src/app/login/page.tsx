@@ -20,10 +20,11 @@ export default function LoginPage() {
     setError('');
     
     // Demo authentication (bypass Supabase for testing)
-    const demoUsers: Record<string, { password: string; role: string }> = {
-      'admin@smpn1.sch.id': { password: 'password', role: 'admin' },
-      'guru@smpn1.sch.id': { password: 'password', role: 'guru' },
-      'siswa@smpn1.sch.id': { password: 'password', role: 'siswa' },
+    const demoUsers: Record<string, { password: string; role: string; redirect: string }> = {
+      'admin@smpn1.sch.id': { password: 'password', role: 'admin', redirect: '/dashboard' },
+      'guru@smpn1.sch.id': { password: 'password', role: 'guru', redirect: '/dashboard-guru' },
+      'siswa@smpn1.sch.id': { password: 'password', role: 'siswa', redirect: '/dashboard-siswa' },
+      'parent@smpn1.sch.id': { password: 'password', role: 'parent', redirect: '/parent/dashboard' },
     };
 
     const user = demoUsers[email];
@@ -38,13 +39,7 @@ export default function LoginPage() {
     await new Promise(resolve => setTimeout(resolve, 500));
 
     // Redirect based on role
-    if (user.role === 'admin') {
-      router.push('/dashboard');
-    } else if (user.role === 'guru') {
-      router.push('/dashboard-guru');
-    } else {
-      router.push('/dashboard-siswa');
-    }
+    router.push(user.redirect);
   };
 
   return (
@@ -192,6 +187,10 @@ export default function LoginPage() {
               <div className="p-3 bg-purple-50 rounded-lg border border-purple-200">
                 <div className="text-xs font-medium text-purple-900 mb-1">👨‍ Siswa</div>
                 <div className="text-xs text-purple-700">siswa@smpn1.sch.id / password</div>
+              </div>
+              <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                <div className="text-xs font-medium text-orange-900 mb-1">👨u200d👩u200d👧 Parent</div>
+                <div className="text-xs text-orange-700">parent@smpn1.sch.id / password</div>
               </div>
             </div>
           </div>
