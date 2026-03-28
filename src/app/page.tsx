@@ -242,9 +242,9 @@ export default function LandingPage() {
             <div className="relative">
               <div className="relative z-10">
                 <img 
-                  src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=600&h=600&fit=crop" 
+                  src="https://web.komdigi.go.id/resource/ZHJ1cGFsL2tvbWluZm8ta2VtZGlrYnVkLWRpZ2l0YWxpc2FzaS1uYXR1bmEuanBlZw==" 
                   alt="Siswa SMP berseragam menggunakan LMS" 
-                  className="rounded-3xl shadow-2xl"
+                  className="rounded-3xl shadow-2xl w-full h-auto object-cover"
                 />
               </div>
               <div className="absolute -top-4 -right-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob" />
