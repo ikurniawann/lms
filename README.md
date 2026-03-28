@@ -1,40 +1,40 @@
-# School LMS - Learning Management System
+# LMS Sekolah - Sistem Manajemen Pembelajaran
 
-**Smart Digital School Ecosystem** - Platform manajemen sekolah modern dengan 3 tier.
+**Ekosistem Sekolah Digital Pintar** - Platform manajemen sekolah modern dengan 3 paket.
 
 ---
 
-## **🎯 Product Tiers**
+## **🎯 Paket Produk**
 
 ### **🥉 STANDARD (Go Digital Basic)**
 **"Sekolah langsung punya website & sistem belajar online"**
 
 **Fitur:**
 - ✅ Website sekolah (profil, berita, galeri, kontak)
-- ✅ LMS dasar (upload materi, tugas, quiz)
+- ✅ LMS dasar (upload materi, tugas, kuis)
 - ✅ Input nilai sederhana
-- ✅ PPDB form online
+- ✅ Form PPDB online
 - ✅ Dashboard dasar
 
 **Target:** Sekolah kecil yang masih manual  
-**Price:** Rp 499K/month
+**Harga:** Rp 499.000/bulan
 
 ---
 
-### **🥈 PLUS (Operational School System)** ⭐ **BEST SELLER**
+### **🥈 PLUS (Operational School System)** ⭐ **PALING LARIS**
 **"Semua aktivitas sekolah tertata"**
 
 **Fitur STANDARD + :**
 - ✅ LMS lengkap (CBT, bank soal, rapor digital)
 - ✅ Absensi (QR code, auto-rekap)
-- ✅ Keuangan (SPP billing, QRIS, payment gateway)
+- ✅ Keuangan (billing SPP, QRIS, payment gateway)
 - ✅ Portal Orang Tua (nilai, absensi, tugas)
 - ✅ Komunikasi (guru ↔ orang tua)
-- ✅ Mobile app (iOS + Android)
-- ✅ PPDB management lengkap
+- ✅ Aplikasi mobile (iOS + Android)
+- ✅ Manajemen PPDB lengkap
 
 **Target:** Sekolah yang sudah jalan tapi kewalahan administrasi  
-**Price:** Rp 1.499K/month
+**Harga:** Rp 1.499.000/bulan
 
 ---
 
@@ -42,120 +42,120 @@
 **"Sekolah modern, data-driven, unggul kompetitif"**
 
 **Fitur PLUS + :**
-- ✅ AI-powered LMS (auto-grading, recommendations)
+- ✅ AI-powered LMS (auto-grading, rekomendasi)
 - ✅ AI Tutor untuk siswa
-- ✅ WhatsApp integration (notifikasi otomatis)
+- ✅ Integrasi WhatsApp (notifikasi otomatis)
 - ✅ Predictive analytics
-- ✅ Face recognition absensi
-- ✅ Multi-school/yayasan support
-- ✅ API integrations (ERP, Dapodik)
+- ✅ Absensi face recognition
+- ✅ Support multi-sekolah / yayasan
+- ✅ Integrasi API (ERP, Dapodik)
 
 **Target:** Sekolah besar / yayasan  
-**Price:** Custom (Starting from Rp 4.999K/month)
+**Harga:** Custom (Mulai Rp 4.999.000/bulan)
 
 ---
 
-## **🚀 Tech Stack**
+## **🚀 Teknologi**
 
 - **Frontend:** Next.js 14 + Tailwind CSS + TypeScript
 - **Backend:** Node.js + Supabase
 - **Database:** PostgreSQL
-- **Mobile:** React Native (coming soon)
+- **Mobile:** React Native (segera)
 - **Deployment:** Vercel
 - **AI:** OpenAI / Local LLM
 
 ---
 
-## **📋 Development Roadmap**
+## **📋 Roadmap Pengembangan**
 
-### **Phase 1: STANDARD (MVP)** - 2-3 weeks
-- [ ] Setup project structure
+### **Fase 1: STANDARD (MVP)** - 2-3 minggu
+- [ ] Setup struktur project
 - [ ] Database schema
-- [ ] Authentication (Admin, Guru, Siswa)
+- [ ] Autentikasi (Admin, Guru, Siswa)
 - [ ] Website CMS (profil, berita, galeri)
-- [ ] LMS basic (materi, tugas, quiz)
-- [ ] PPDB form
+- [ ] LMS basic (materi, tugas, kuis)
+- [ ] Form PPDB
 - [ ] Deployment
 
-### **Phase 2: PLUS (Core Product)** - 4-6 weeks
+### **Fase 2: PLUS (Core Product)** - 4-6 minggu
 - [ ] CBT (Computer Based Test)
 - [ ] Bank soal & auto-grading
 - [ ] Rapor digital
 - [ ] Absensi QR code
-- [ ] SPP billing & payment gateway
+- [ ] Billing SPP & payment gateway
 - [ ] Portal orang tua
-- [ ] Mobile app
+- [ ] Aplikasi mobile
 - [ ] In-app messaging
 
-### **Phase 3: ADVANCE (Premium)** - 6-8 weeks
+### **Fase 3: ADVANCE (Premium)** - 6-8 minggu
 - [ ] AI auto-grading (esai)
 - [ ] AI recommendations
 - [ ] AI Tutor
-- [ ] WhatsApp integration
+- [ ] Integrasi WhatsApp
 - [ ] Predictive analytics
 - [ ] Face recognition
-- [ ] Multi-school support
-- [ ] API integrations
+- [ ] Support multi-sekolah
+- [ ] Integrasi API
 
 ---
 
-## **🏗️ Project Structure**
+## **🏗️ Struktur Project**
 
 ```
 lms/
 ├── apps/
-│   ├── web/                    # Next.js web app
-│   ├── mobile/                 # React Native (later)
-│   └── admin/                  # Admin dashboard
+│   ├── web/                    # Aplikasi web Next.js
+│   ├── mobile/                 # React Native (nanti)
+│   └── admin/                  # Dashboard admin
 ├── packages/
-│   ├── database/               # Supabase schema & migrations
+│   ├── database/               # Schema & migrations Supabase
 │   ├── api/                    # API endpoints
-│   └── ui/                     # Shared UI components
+│   └── ui/                     # UI components shared
 ├── docs/
-│   ├── product-tiers.md        # Detailed tiers
-│   ├── api-docs.md             # API documentation
-│   └── deployment.md           # Deployment guide
+│   ├── product-tiers.md        # Detail paket
+│   ├── api-docs.md             # Dokumentasi API
+│   └── deployment.md           # Panduan deployment
 └── scripts/
-    ├── seed.sql                # Sample data
-    └── backup.sh               # Backup scripts
+    ├── seed.sql                # Data sample
+    └── backup.sh               # Script backup
 ```
 
 ---
 
 ## **👥 Target Market**
 
-| Tier | Target | Price | Margin |
-|------|--------|-------|--------|
-| **STANDARD** | Sekolah kecil (100-300 siswa) | Rp 499K/month | Low (market entry) |
-| **PLUS** ⭐ | Sekolah menengah (300-1000 siswa) | Rp 1.499K/month | **High (main profit)** |
-| **ADVANCE** | Sekolah besar / yayasan (1000+ siswa) | Custom | **Very High (enterprise)** |
+| Paket | Target | Harga | Margin |
+|-------|--------|-------|--------|
+| **STANDARD** | Sekolah kecil (100-300 siswa) | Rp 499K/bulan | Rendah (market entry) |
+| **PLUS** ⭐ | Sekolah menengah (300-1000 siswa) | Rp 1.499K/bulan | **Tinggi (profit utama)** |
+| **ADVANCE** | Sekolah besar / yayasan (1000+ siswa) | Custom | **Sangat Tinggi (enterprise)** |
 
 ---
 
-## **💰 Revenue Projection**
+## **💰 Proyeksi Pendapatan**
 
-**Year 1 Target:**
-- 50 schools × STANDARD = Rp 25M/month
-- 30 schools × PLUS = Rp 45M/month
-- 5 schools × ADVANCE = Rp 25M/month
-- **Total: Rp 95M/month** (Rp 1.14B/year)
+**Target Tahun 1:**
+- 50 sekolah × STANDARD = Rp 25M/bulan
+- 30 sekolah × PLUS = Rp 45M/bulan
+- 5 sekolah × ADVANCE = Rp 25M/bulan
+- **Total: Rp 95M/bulan** (Rp 1.14B/tahun)
 
-**Year 2 Target:**
-- 150 schools × STANDARD = Rp 75M/month
-- 80 schools × PLUS = Rp 120M/month
-- 20 schools × ADVANCE = Rp 100M/month
-- **Total: Rp 295M/month** (Rp 3.54B/year)
+**Target Tahun 2:**
+- 150 sekolah × STANDARD = Rp 75M/bulan
+- 80 sekolah × PLUS = Rp 120M/bulan
+- 20 sekolah × ADVANCE = Rp 100M/bulan
+- **Total: Rp 295M/bulan** (Rp 3.54B/tahun)
 
 ---
 
-## **🔧 Getting Started**
+## **🔧 Memulai**
 
-### **Prerequisites**
+### **Prasyarat**
 - Node.js 18+
-- Supabase account
-- Vercel account
+- Akun Supabase
+- Akun Vercel
 
-### **Installation**
+### **Instalasi**
 
 ```bash
 # Clone repository
@@ -168,7 +168,7 @@ npm install
 # Setup environment variables
 cp .env.example .env.local
 
-# Run database migrations
+# Jalankan database migrations
 npm run db:migrate
 
 # Start development server
@@ -179,37 +179,37 @@ npm run dev
 
 ```env
 # Supabase
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+NEXT_PUBLIC_SUPABASE_URL=url_supabase_kamu
+NEXT_PUBLIC_SUPABASE_ANON_KEY=anon_key_kamu
+SUPABASE_SERVICE_ROLE_KEY=service_role_key_kamu
 
 # Vercel
-NEXT_PUBLIC_VERCEL_URL=your_vercel_url
+NEXT_PUBLIC_VERCEL_URL=url_vercel_kamu
 
 # Payment Gateway (Midtrans/Xendit)
-NEXT_PUBLIC_PAYMENT_GATEWAY_KEY=your_key
+NEXT_PUBLIC_PAYMENT_GATEWAY_KEY=key_kamu
 
 # WhatsApp API
-WHATSAPP_API_KEY=your_key
+WHATSAPP_API_KEY=key_kamu
 
 # AI (OpenAI)
-OPENAI_API_KEY=your_key
+OPENAI_API_KEY=key_kamu
 ```
 
 ---
 
-## **📞 Contact**
+## **📞 Kontak**
 
 **Ilham Kurniawan**  
-Email: [your-email@example.com](mailto:your-email@example.com)  
-Phone: +62-xxx-xxxx-xxxx
+Email: [email-kamu@example.com](mailto:email-kamu@example.com)  
+Telepon: +62-xxx-xxxx-xxxx
 
 ---
 
-## **📄 License**
+## **📄 Lisensi**
 
-Proprietary - All rights reserved.
+Proprietary - Hak cipta dilindungi.
 
 ---
 
-**Built with ❤️ for Indonesian Schools**
+**Dibuat dengan ❤️ untuk Sekolah Indonesia**

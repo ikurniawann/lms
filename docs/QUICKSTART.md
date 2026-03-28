@@ -1,123 +1,123 @@
-# Quick Start Guide - School LMS
+# Panduan Cepat - LMS Sekolah
 
-## **🚀 Get Started in 10 Minutes**
+## **🚀 Mulai dalam 10 Menit**
 
-### **Step 1: Clone Repository**
+### **Langkah 1: Clone Repository**
 ```bash
 git clone https://github.com/ikurniawann/lms.git
 cd lms
 ```
 
-### **Step 2: Install Dependencies**
+### **Langkah 2: Install Dependencies**
 ```bash
 npm install
 ```
 
-### **Step 3: Setup Supabase**
+### **Langkah 3: Setup Supabase**
 
-1. Go to [https://supabase.com](https://supabase.com)
-2. Create new project
-3. Copy your project URL and API keys
+1. Buka [https://supabase.com](https://supabase.com)
+2. Buat project baru
+3. Copy URL project dan API keys kamu
 
-4. Create `.env.local` file:
+4. Buat file `.env.local`:
 ```bash
 cp .env.example .env.local
 ```
 
 5. Edit `.env.local`:
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+NEXT_PUBLIC_SUPABASE_URL=https://project-kamu.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=anon-key-kamu
+SUPABASE_SERVICE_ROLE_KEY=service-role-key-kamu
 ```
 
-### **Step 4: Setup Database**
+### **Langkah 4: Setup Database**
 
 ```bash
-# Run migrations
+# Jalankan migrations
 npm run db:migrate
 
-# Or manually in Supabase SQL Editor:
+# Atau manual di Supabase SQL Editor:
 # Copy paste database/schema.sql
 ```
 
-### **Step 5: Run Development Server**
+### **Langkah 5: Jalankan Development Server**
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Buka [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## **📁 Project Structure**
+## **📁 Struktur Project**
 
 ```
 lms/
 ├── apps/
-│   ├── web/                    # Main Next.js app
+│   ├── web/                    # Aplikasi utama Next.js
 │   │   ├── app/
 │   │   │   ├── page.tsx        # Landing page
-│   │   │   ├── login/          # Login page
-│   │   │   ├── dashboard/      # User dashboard
-│   │   │   ├── lms/            # LMS features
-│   │   │   ├── attendance/     # Absensi
-│   │   │   ├── finance/        # Keuangan
+│   │   │   ├── login/          # Halaman login
+│   │   │   ├── dashboard/      # Dashboard user
+│   │   │   ├── lms/            # Fitur LMS
+│   │   │   ├── absensi/        # Absensi
+│   │   │   ├── keuangan/       # Keuangan
 │   │   │   └── ppdb/           # PPDB
-│   │   ├── components/         # React components
+│   │   ├── components/         # Components React
 │   │   └── lib/                # Utilities
-│   └── mobile/                 # React Native (later)
+│   └── mobile/                 # React Native (nanti)
 ├── database/
-│   ├── schema.sql              # Database schema
-│   └── seed.sql                # Sample data
+│   ├── schema.sql              # Schema database
+│   └── seed.sql                # Data sample
 ├── docs/
-│   ├── PRODUCT_TIERS.md        # Product tiers
-│   └── API.md                  # API docs
-├── public/                     # Static files
+│   ├── PRODUCT_TIERS.md        # Detail paket
+│   └── API.md                  # Dokumentasi API
+├── public/                     # File statis
 └── package.json
 ```
 
 ---
 
-## **🎯 Next Steps**
+## **🎯 Langkah Selanjutnya**
 
-### **For Development:**
-1. Read `database/schema.sql` - Understand data model
-2. Check `docs/PRODUCT_TIERS.md` - Feature details
-3. Start building landing page
-4. Implement authentication
+### **Untuk Development:**
+1. Baca `database/schema.sql` - Pahami struktur data
+2. Cek `docs/PRODUCT_TIERS.md` - Detail fitur
+3. Mulai bangun landing page
+4. Implementasi autentikasi
 
-### **For Sales:**
-1. Read `docs/PRODUCT_TIERS.md` - Know the features
-2. Prepare demo environment
-3. Create sales deck
-4. Start outreach to schools
+### **Untuk Sales:**
+1. Baca `docs/PRODUCT_TIERS.md` - Pahami fitur
+2. Siapkan demo environment
+3. Buat sales deck
+4. Mulai outreach ke sekolah
 
 ---
 
-## **🆘 Need Help?**
+## **🆘 Butuh Bantuan?**
 
-**Documentation:**
+**Dokumentasi:**
 - [Next.js Docs](https://nextjs.org/docs)
 - [Supabase Docs](https://supabase.com/docs)
 - [Tailwind CSS](https://tailwindcss.com/docs)
 
-**Contact:**
+**Kontak:**
 - Email: support@lms.co.id
-- GitHub Issues: [Create issue](https://github.com/ikurniawann/lms/issues)
+- GitHub Issues: [Buat issue](https://github.com/ikurniawann/lms/issues)
 
 ---
 
-## **📋 Checklist - First Time Setup**
+## **📋 Checklist - Setup Pertama**
 
-- [ ] Git repository cloned
-- [ ] Node.js installed (v18+)
-- [ ] Supabase account created
-- [ ] Environment variables configured
+- [ ] Repository Git cloned
+- [ ] Node.js terinstall (v18+)
+- [ ] Akun Supabase dibuat
+- [ ] Environment variables dikonfigurasi
 - [ ] Database schema deployed
 - [ ] Development server running
-- [ ] Can access localhost:3000
+- [ ] Bisa akses localhost:3000
 
 ---
 
-**Happy Coding!** 🚀
+**Selamat Coding!** 🚀
