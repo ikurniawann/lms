@@ -213,7 +213,7 @@ export default function UjianPage({ params }: { params: { id: string } }) {
 
               {q.type === 'multiple_choice' ? (
                 <div className="space-y-3">
-                  {q.options.map((opt, i) => (
+                  {q.options.map((opt: string, i: number) => (
                     <label
                       key={i}
                       className={`flex items-center p-4 border rounded-lg cursor-pointer transition-all ${
