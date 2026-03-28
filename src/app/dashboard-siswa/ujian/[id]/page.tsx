@@ -11,13 +11,22 @@ export default function UjianPage({ params }: { params: { id: string } }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  type Question = {
+  type MultipleChoiceQuestion = {
     id: number;
-    type: 'multiple_choice' | 'essay';
+    type: 'multiple_choice';
     question: string;
-    options?: string[];
+    options: string[];
     points: number;
   };
+
+  type EssayQuestion = {
+    id: number;
+    type: 'essay';
+    question: string;
+    points: number;
+  };
+
+  type Question = MultipleChoiceQuestion | EssayQuestion;
 
   type Exam = {
     id: number;
