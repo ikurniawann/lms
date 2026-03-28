@@ -4,9 +4,10 @@ import { useState } from 'react';
 import {
   Users, Plus, Search, Filter, Edit, Trash2, Download, Upload,
   ChevronLeft, ChevronRight, Eye, Mail, Phone, MapPin
-} from 'lucide-react';
+, Menu, X } from 'lucide-react';
 
 export default function ManajemenSiswa() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedClass, setSelectedClass] = useState('ALL');
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +39,7 @@ export default function ManajemenSiswa() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Sidebar - Same as Admin Dashboard */}
-      <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 lg:translate-x-0">
+      <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 border-gray-200 lg:translate-x-0">
         <div className="h-16 flex items-center px-6 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
@@ -81,6 +82,9 @@ export default function ManajemenSiswa() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
+              <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 hover:bg-gray-100 rounded-lg lg:hidden">
+                <Menu className="w-6 h-6" />
+              </button>
                 <div className="p-3 rounded-lg bg-blue-50">
                   <Users className="w-6 h-6 text-blue-600" />
                 </div>

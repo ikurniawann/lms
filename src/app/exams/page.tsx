@@ -4,9 +4,10 @@ import { useState } from 'react';
 import {
   FileText, Plus, Search, Calendar, Clock, Users, TrendingUp,
   Edit, Trash2, Eye, Download, Upload, CheckCircle, AlertCircle
-} from 'lucide-react';
+, Menu, X } from 'lucide-react';
 
 export default function ManajemenUjian() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('ALL');
 
@@ -43,7 +44,7 @@ export default function ManajemenUjian() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 lg:translate-x-0">
+      <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 border-gray-200 lg:translate-x-0">
         <div className="h-16 flex items-center px-6 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
@@ -107,6 +108,9 @@ export default function ManajemenUjian() {
               return (
                 <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                   <div className="flex items-center justify-between mb-4">
+              <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 hover:bg-gray-100 rounded-lg lg:hidden">
+                <Menu className="w-6 h-6" />
+              </button>
                     <div className={`p-3 rounded-lg ${colorClasses[stat.color as keyof typeof colorClasses]}`}>
                       <Icon className="w-6 h-6" />
                     </div>
