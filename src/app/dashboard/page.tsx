@@ -16,7 +16,7 @@ import {
   CreditCard,
   UserCog,
   Megaphone,
-  Event,
+  Calendar as CalendarEvent,
   MessageSquare,
   Search,
   Bell,
@@ -47,7 +47,7 @@ export default function DashboardAdmin() {
     { icon: CreditCard, label: 'Akun', href: '/dashboard/accounts' },
     { icon: UserCog, label: 'HRM', href: '/dashboard/hrm' },
     { icon: Megaphone, label: 'Pengumuman', href: '/dashboard/announcements' },
-    { icon: Event, label: 'Acara', href: '/dashboard/events' },
+    { icon: CalendarEvent, label: 'Acara', href: '/dashboard/events' },
     { icon: MessageSquare, label: 'Pesan', href: '/dashboard/messages' },
   ];
 
