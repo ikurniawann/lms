@@ -2,27 +2,47 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { BookOpen, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
     
-    // TODO: Implement Supabase Auth
-    console.log('Login:', { email, password });
-    
-    // Simulate login
-    setTimeout(() => {
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+
+      // Get user role from metadata
+      const user = data.user;
+      const role = user?.user_metadata?.role || 'siswa';
+
+      // Redirect based on role
+      if (role === 'admin') {
+        router.push('/dashboard');
+      } else if (role === 'guru') {
+        router.push('/dashboard-guru');
+      } else {
+        router.push('/dashboard-siswa');
+      }
+    } catch (err: any) {
+      setError(err.message || 'Login gagal, silakan coba lagi');
       setLoading(false);
-      // Redirect to dashboard based on role
-      window.location.href = '/dashboard';
-    }, 1000);
+    }
   };
 
   return (
@@ -56,6 +76,13 @@ export default function LoginPage() {
 
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Error Message */}
+            {error && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-sm text-red-700">{error}</p>
+              </div>
+            )}
+
             {/* Email */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
