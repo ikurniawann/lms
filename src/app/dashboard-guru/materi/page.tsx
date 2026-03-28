@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import {
   BookOpen, Plus, Search, Filter, Edit, Trash2, Download, Upload, Eye,
-  FileText, Video, Image, File
+  FileText, Video, Image, File, Menu, X
 } from 'lucide-react';
 
 export default function MateriSaya() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedClass, setSelectedClass] = useState('ALL');
   const [selectedSubject, setSelectedSubject] = useState('ALL');
@@ -56,8 +57,16 @@ export default function MateriSaya() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Sidebar - Same as Dashboard Guru */}
-      <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 lg:translate-x-0">
+      {/* Mobile Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         <div className="h-16 flex items-center px-6 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
@@ -137,11 +146,18 @@ export default function MateriSaya() {
       </aside>
 
       {/* Main Content */}
-      <div className="lg:ml-64">
+      <div className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : ''}`}>
         {/* Top Bar */}
         <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40">
           <div className="h-full px-4 sm:px-6 flex items-center justify-between">
             <div className="flex items-center space-x-4">
+              {/* Hamburger Menu */}
+              <button 
+                onClick={() => setSidebarOpen(!sidebarOpen)} 
+                className="p-2 hover:bg-gray-100 rounded-lg lg:hidden"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
