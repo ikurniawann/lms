@@ -11,8 +11,26 @@ export default function UjianPage({ params }: { params: { id: string } }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  type Question = {
+    id: number;
+    type: 'multiple_choice' | 'essay';
+    question: string;
+    options?: string[];
+    points: number;
+  };
+
+  type Exam = {
+    id: number;
+    title: string;
+    subject: string;
+    class: string;
+    duration: number;
+    totalPoints: number;
+    questions: Question[];
+  };
+
   // Sample exam data
-  const exam = {
+  const exam: Exam = {
     id: 1,
     title: 'UTS Matematika Bab 1 - Aljabar',
     subject: 'Matematika',
