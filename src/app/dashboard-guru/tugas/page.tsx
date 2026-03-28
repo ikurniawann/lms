@@ -1,10 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { FileText, Plus, Search, Calendar, Clock, Users, CheckCircle, Edit, Trash2, Eye, Download , Menu, X } from 'lucide-react';
+import { FileText, Plus, Search, Calendar, Clock, Users, CheckCircle, Edit, Trash2, Eye, Download } from 'lucide-react';
 
 export default function TugasPage() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const assignments = [
     { id: 1, title: 'Latihan Soal Bab 1', class: '7A', subject: 'Matematika', due: '2 Apr 2026', submitted: '28/32', status: 'Active' },
     { id: 2, title: 'PR Geometri', class: '7B', subject: 'Matematika', due: '3 Apr 2026', submitted: '25/30', status: 'Active' },
@@ -21,7 +20,7 @@ export default function TugasPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 border-gray-200 lg:translate-x-0">
+      <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 lg:translate-x-0">
         <div className="h-16 flex items-center px-6 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
