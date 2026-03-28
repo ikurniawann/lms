@@ -1,5 +1,6 @@
 'use client';
-import { FileText, Clock, Calendar, TrendingUp } from 'lucide-react';
+import { FileText, Clock, Calendar, TrendingUp, Play } from 'lucide-react';
+import Link from 'next/link';
 
 export default function UjianPage() {
   const exams = [
@@ -73,6 +74,7 @@ export default function UjianPage() {
                   <th className="text-left p-4">Ruangan</th>
                   <th className="text-left p-4">Status</th>
                   <th className="text-left p-4">Nilai</th>
+                  <th className="text-left p-4">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -98,6 +100,16 @@ export default function UjianPage() {
                         <span className="font-bold text-green-600">{e.score}</span>
                       ) : (
                         <span className="text-gray-400">-</span>
+                      )}
+                    </td>
+                    <td className="p-4">
+                      {e.status === 'Berlangsung' && (
+                        <Link
+                          href={`/dashboard-siswa/ujian/${e.id}`}
+                          className="px-3 py-1 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 flex items-center gap-2"
+                        >
+                          <Play className="w-3 h-3"/> Mulai
+                        </Link>
                       )}
                     </td>
                   </tr>
