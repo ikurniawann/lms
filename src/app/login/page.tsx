@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { BookOpen, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -19,29 +19,31 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
     
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+    // Demo authentication (bypass Supabase for testing)
+    const demoUsers: Record<string, { password: string; role: string }> = {
+      'admin@smpn1.sch.id': { password: 'password', role: 'admin' },
+      'guru@smpn1.sch.id': { password: 'password', role: 'guru' },
+      'siswa@smpn1.sch.id': { password: 'password', role: 'siswa' },
+    };
 
-      if (error) throw error;
-
-      // Get user role from metadata
-      const user = data.user;
-      const role = user?.user_metadata?.role || 'siswa';
-
-      // Redirect based on role
-      if (role === 'admin') {
-        router.push('/dashboard');
-      } else if (role === 'guru') {
-        router.push('/dashboard-guru');
-      } else {
-        router.push('/dashboard-siswa');
-      }
-    } catch (err: any) {
-      setError(err.message || 'Login gagal, silakan coba lagi');
+    const user = demoUsers[email];
+    
+    if (!user || user.password !== password) {
+      setError('Email atau password salah');
       setLoading(false);
+      return;
+    }
+
+    // Simulate loading
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // Redirect based on role
+    if (user.role === 'admin') {
+      router.push('/dashboard');
+    } else if (user.role === 'guru') {
+      router.push('/dashboard-guru');
+    } else {
+      router.push('/dashboard-siswa');
     }
   };
 
