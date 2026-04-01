@@ -3,22 +3,29 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import {
-  BookOpen, FileText, Users, CheckSquare, TrendingUp,
-  Menu, X, Settings, ChevronRight
+  LayoutDashboard, Users, GraduationCap, UserCheck, School, FileText, Wallet,
+  CheckSquare, Calendar, Award, BookOpen, CreditCard, UserCog, Megaphone, Settings,
+  Menu, X, ChevronRight
 } from 'lucide-react';
 
 const menuItems = [
-  { icon: TrendingUp, label: 'Dashboard', href: '/dashboard-guru' },
-  { icon: BookOpen, label: 'Materi Saya', href: '/dashboard-guru/materi' },
-  { icon: FileText, label: 'Tugas', href: '/dashboard-guru/tugas' },
-  { icon: CheckSquare, label: 'Ujian', href: '/dashboard-guru/ujian' },
-  { icon: FileText, label: 'Buat Ujian', href: '/dashboard-guru/buat-ujian' },
-  { icon: Users, label: 'Siswa', href: '/dashboard-guru/students' },
-  { icon: CheckSquare, label: 'Absensi', href: '/dashboard-guru/attendance' },
-  { icon: TrendingUp, label: 'Nilai', href: '/dashboard-guru/grades' },
+  { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
+  { icon: Users, label: 'Siswa', href: '/dashboard/students' },
+  { icon: GraduationCap, label: 'Guru', href: '/dashboard/teachers' },
+  { icon: UserCheck, label: 'Orang Tua', href: '/dashboard/parents' },
+  { icon: School, label: 'Kelas', href: '/dashboard/classes' },
+  { icon: FileText, label: 'Ujian', href: '/dashboard/exams' },
+  { icon: Wallet, label: 'Keuangan', href: '/dashboard/finance' },
+  { icon: CheckSquare, label: 'Absensi', href: '/dashboard/attendance' },
+  { icon: Calendar, label: 'Cuti', href: '/dashboard/leave' },
+  { icon: Award, label: 'Sertifikat', href: '/dashboard/certificates' },
+  { icon: BookOpen, label: 'Perpustakaan', href: '/dashboard/library' },
+  { icon: CreditCard, label: 'Akun', href: '/dashboard/accounts' },
+  { icon: UserCog, label: 'HRM', href: '/dashboard/hrm' },
+  { icon: Megaphone, label: 'Pengumuman', href: '/dashboard/announcements' },
 ];
 
-export default function DashboardGuruLayout({
+export default function DashboardAdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -26,12 +33,10 @@ export default function DashboardGuruLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
 
-  // Close sidebar on route change
   useEffect(() => {
     setSidebarOpen(false);
   }, [pathname]);
 
-  // Close sidebar on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setSidebarOpen(false);
@@ -48,7 +53,7 @@ export default function DashboardGuruLayout({
           <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
             <BookOpen className="w-5 h-5 text-white" />
           </div>
-          <span className="text-lg font-bold text-gray-900">LMS Guru</span>
+          <span className="text-lg font-bold text-gray-900">LMS Sekolah</span>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -79,7 +84,7 @@ export default function DashboardGuruLayout({
             <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
               <BookOpen className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-bold text-gray-900">LMS Guru</span>
+            <span className="text-lg font-bold text-gray-900">LMS Sekolah</span>
           </div>
         </div>
 
@@ -98,11 +103,11 @@ export default function DashboardGuruLayout({
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0">
-              GS
+              AD
             </div>
             <div className="min-w-0">
-              <div className="font-semibold text-gray-900 truncate">Budi Santoso, S.Pd</div>
-              <div className="text-xs text-gray-500">Guru Matematika</div>
+              <div className="font-semibold text-gray-900 truncate">Admin Sekolah</div>
+              <div className="text-xs text-gray-500">SMPN 1 Jakarta</div>
             </div>
           </div>
         </div>
@@ -139,7 +144,7 @@ export default function DashboardGuruLayout({
             className="flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
           >
             <Settings className="w-5 h-5" />
-            <span className="font-medium">Pengaturan</span>
+            <span className="font-medium">Settings</span>
           </a>
         </div>
       </aside>

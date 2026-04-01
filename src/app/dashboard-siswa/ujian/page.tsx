@@ -18,7 +18,7 @@ export default function UjianPage() {
   ];
 
   const getStatusColor = (status: string) => {
-    switch(status) {
+    switch (status) {
       case 'Selesai': return 'bg-green-100 text-green-700';
       case 'Akan Datang': return 'bg-blue-100 text-blue-700';
       case 'Berlangsung': return 'bg-yellow-100 text-yellow-700';
@@ -27,97 +27,75 @@ export default function UjianPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <aside className="fixed w-64 bg-white border-r">
-        <div className="h-16 px-6 flex items-center">
-          <FileText className="w-6 h-6 text-blue-600"/>
-          <span className="ml-2 font-bold">LMS Siswa</span>
-        </div>
-        <nav className="p-4 space-y-1">
-          <a href="/dashboard-siswa" className="block px-4 py-3 hover:bg-gray-50">Dashboard</a>
-          <a href="/dashboard-siswa/jadwal" className="block px-4 py-3 hover:bg-gray-50">Jadwal</a>
-          <a href="/dashboard-siswa/materi" className="block px-4 py-3 hover:bg-gray-50">Materi</a>
-          <a href="/dashboard-siswa/tugas" className="block px-4 py-3 hover:bg-gray-50">Tugas</a>
-          <a href="/dashboard-siswa/ujian" className="block px-4 py-3 bg-blue-50 text-blue-700">Ujian</a>
-          <a href="/dashboard-siswa/nilai" className="block px-4 py-3 hover:bg-gray-50">Nilai</a>
-          <a href="/dashboard-siswa/absensi" className="block px-4 py-3 hover:bg-gray-50">Absensi</a>
-        </nav>
-      </aside>
+    <div>
+      {/* Page Header */}
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Ujian & Quiz</h1>
+        <p className="text-sm sm:text-base text-gray-600">Lihat jadwal ujian dan hasil ujianmu.</p>
+      </div>
 
-      <div className="ml-64">
-        <header className="h-16 bg-white border-b px-6 flex items-center">
-          <h1 className="text-xl font-bold">Jadwal Ujian</h1>
-        </header>
-        <main className="p-6">
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold mb-2">Ujian & Quiz</h1>
-            <p className="text-gray-600">Lihat jadwal ujian dan hasil ujianmu.</p>
+      {/* Stats Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+        {statsCards.map((stat, i) => (
+          <div key={i} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+            <div className="text-sm text-gray-600">{stat.title}</div>
           </div>
+        ))}
+      </div>
 
-          <div className="grid grid-cols-4 gap-4 mb-8">
-            {statsCards.map((stat, i) => (
-              <div key={i} className="bg-white p-6 rounded-xl shadow-sm border">
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.title}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="text-left p-4">Nama Ujian</th>
-                  <th className="text-left p-4">Mapel</th>
-                  <th className="text-left p-4">Tanggal & Waktu</th>
-                  <th className="text-left p-4">Durasi</th>
-                  <th className="text-left p-4">Ruangan</th>
-                  <th className="text-left p-4">Status</th>
-                  <th className="text-left p-4">Nilai</th>
-                  <th className="text-left p-4">Actions</th>
+      {/* Exams Table */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Nama Ujian</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Mapel</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Tanggal</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Durasi</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Status</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Nilai</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {exams.map(e => (
+                <tr key={e.id} className="border-b border-gray-100 hover:bg-gray-50">
+                  <td className="py-3 px-4 font-medium text-sm">{e.title}</td>
+                  <td className="py-3 px-4">
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">{e.subject}</span>
+                  </td>
+                  <td className="py-3 px-4 text-sm">
+                    <div className="text-gray-600">{e.date}</div>
+                    <div className="text-gray-500 text-xs">{e.time}</div>
+                  </td>
+                  <td className="py-3 px-4 text-sm text-gray-600">{e.duration}</td>
+                  <td className="py-3 px-4">
+                    <span className={`px-2 py-1 rounded-full text-sm ${getStatusColor(e.status)}`}>{e.status}</span>
+                  </td>
+                  <td className="py-3 px-4">
+                    {e.score ? (
+                      <span className="font-bold text-green-600">{e.score}</span>
+                    ) : (
+                      <span className="text-gray-400">-</span>
+                    )}
+                  </td>
+                  <td className="py-3 px-4">
+                    {e.status === 'Berlangsung' && (
+                      <Link
+                        href={`/dashboard-siswa/ujian/${e.id}`}
+                        className="px-3 py-1 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 flex items-center gap-2 inline-flex"
+                      >
+                        <Play className="w-3 h-3" /> Mulai
+                      </Link>
+                    )}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {exams.map(e => (
-                  <tr key={e.id} className="border-b hover:bg-gray-50">
-                    <td className="p-4 font-medium">{e.title}</td>
-                    <td className="p-4"><span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">{e.subject}</span></td>
-                    <td className="p-4 text-sm">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-3 h-3"/>
-                        {e.date}
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-500">
-                        <Clock className="w-3 h-3"/>
-                        {e.time}
-                      </div>
-                    </td>
-                    <td className="p-4 text-sm text-gray-600">{e.duration}</td>
-                    <td className="p-4 text-sm text-gray-600">{e.room}</td>
-                    <td className="p-4"><span className={`px-2 py-1 rounded-full text-sm ${getStatusColor(e.status)}`}>{e.status}</span></td>
-                    <td className="p-4">
-                      {e.score ? (
-                        <span className="font-bold text-green-600">{e.score}</span>
-                      ) : (
-                        <span className="text-gray-400">-</span>
-                      )}
-                    </td>
-                    <td className="p-4">
-                      {e.status === 'Berlangsung' && (
-                        <Link
-                          href={`/dashboard-siswa/ujian/${e.id}`}
-                          className="px-3 py-1 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 flex items-center gap-2"
-                        >
-                          <Play className="w-3 h-3"/> Mulai
-                        </Link>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </main>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

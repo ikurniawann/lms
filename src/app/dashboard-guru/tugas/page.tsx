@@ -33,7 +33,7 @@ export default function TugasPage() {
   const classes = ['7A', '7B', '7C', '8A', '8B', '8C', '9A', '9B', '9C'];
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8">
+    <div>
       {/* Page Header */}
       <div className="mb-6 sm:mb-8">
         <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Manajemen Tugas</h1>

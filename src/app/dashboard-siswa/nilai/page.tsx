@@ -32,91 +32,71 @@ export default function NilaiPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <aside className="fixed w-64 bg-white border-r">
-        <div className="h-16 px-6 flex items-center">
-          <TrendingUp className="w-6 h-6 text-blue-600"/>
-          <span className="ml-2 font-bold">LMS Siswa</span>
+    <div>
+      {/* Page Header */}
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Nilai & Raport</h1>
+        <p className="text-sm sm:text-base text-gray-600">Lihat nilai UTS, UAS, dan rata-rata kamu.</p>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+        {statsCards.map((stat, i) => (
+          <div key={i} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+            <div className="text-sm text-gray-600">{stat.title}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Grades Table */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-6 sm:mb-8">
+        <div className="p-4 sm:p-6 border-b border-gray-100">
+          <h3 className="text-base sm:text-lg font-bold text-gray-900">Nilai Per Mata Pelajaran</h3>
         </div>
-        <nav className="p-4 space-y-1">
-          <a href="/dashboard-siswa" className="block px-4 py-3 hover:bg-gray-50">Dashboard</a>
-          <a href="/dashboard-siswa/jadwal" className="block px-4 py-3 hover:bg-gray-50">Jadwal</a>
-          <a href="/dashboard-siswa/materi" className="block px-4 py-3 hover:bg-gray-50">Materi</a>
-          <a href="/dashboard-siswa/tugas" className="block px-4 py-3 hover:bg-gray-50">Tugas</a>
-          <a href="/dashboard-siswa/ujian" className="block px-4 py-3 hover:bg-gray-50">Ujian</a>
-          <a href="/dashboard-siswa/nilai" className="block px-4 py-3 bg-blue-50 text-blue-700">Nilai</a>
-          <a href="/dashboard-siswa/absensi" className="block px-4 py-3 hover:bg-gray-50">Absensi</a>
-        </nav>
-      </aside>
-
-      <div className="ml-64">
-        <header className="h-16 bg-white border-b px-6 flex items-center">
-          <h1 className="text-xl font-bold">Nilai & Raport</h1>
-        </header>
-        <main className="p-6">
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold mb-2">Nilai Akademik</h1>
-            <p className="text-gray-600">Lihat nilai UTS, UAS, dan rata-rata kamu.</p>
-          </div>
-
-          <div className="grid grid-cols-4 gap-4 mb-8">
-            {statsCards.map((stat, i) => (
-              <div key={i} className="bg-white p-6 rounded-xl shadow-sm border">
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.title}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-white rounded-xl shadow-sm border overflow-hidden mb-8">
-            <div className="p-6 border-b">
-              <h3 className="font-bold">Nilai Per Mata Pelajaran</h3>
-            </div>
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="text-left p-4">Mata Pelajaran</th>
-                  <th className="text-left p-4">UTS</th>
-                  <th className="text-left p-4">UAS</th>
-                  <th className="text-left p-4">Rata-rata</th>
-                  <th className="text-left p-4">Grade</th>
-                  <th className="text-left p-4">SKS</th>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Mata Pelajaran</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">UTS</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">UAS</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Rata-rata</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              {grades.map((g, i) => (
+                <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
+                  <td className="py-3 px-4 font-medium text-sm">{g.subject}</td>
+                  <td className="py-3 px-4 text-sm">{g.uts}</td>
+                  <td className="py-3 px-4 text-sm">{g.uas}</td>
+                  <td className="py-3 px-4 text-sm font-bold text-blue-600">{g.avg}</td>
+                  <td className="py-3 px-4"><span className={`px-2 py-1 rounded-full text-sm font-bold ${getGradeColor(g.grade)}`}>{g.grade}</span></td>
                 </tr>
-              </thead>
-              <tbody>
-                {grades.map((g, i) => (
-                  <tr key={i} className="border-b hover:bg-gray-50">
-                    <td className="p-4 font-medium">{g.subject}</td>
-                    <td className="p-4">{g.uts}</td>
-                    <td className="p-4">{g.uas}</td>
-                    <td className="p-4 font-bold text-blue-600">{g.avg}</td>
-                    <td className="p-4"><span className={`px-2 py-1 rounded-full text-sm font-bold ${getGradeColor(g.grade)}`}>{g.grade}</span></td>
-                    <td className="p-4 text-sm text-gray-600">{g.credit}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-          {/* Semester Summary */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-white">
-            <h3 className="text-lg font-bold mb-4">Ringkasan Semester Ini</h3>
-            <div className="grid grid-cols-3 gap-6">
-              <div>
-                <div className="text-3xl font-bold">88.1</div>
-                <div className="text-blue-100 text-sm">Rata-rata Semester</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold">5/32</div>
-                <div className="text-blue-100 text-sm">Peringkat Kelas</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold">26/26</div>
-                <div className="text-blue-100 text-sm">Total SKS</div>
-              </div>
-            </div>
+      {/* Semester Summary */}
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-4 sm:p-6 text-white">
+        <h3 className="text-lg font-bold mb-4">Ringkasan Semester Ini</h3>
+        <div className="grid grid-cols-3 gap-4">
+          <div>
+            <div className="text-2xl sm:text-3xl font-bold">88.1</div>
+            <div className="text-blue-100 text-sm">Rata-rata Semester</div>
           </div>
-        </main>
+          <div>
+            <div className="text-2xl sm:text-3xl font-bold">5/32</div>
+            <div className="text-blue-100 text-sm">Peringkat Kelas</div>
+          </div>
+          <div>
+            <div className="text-2xl sm:text-3xl font-bold">26/26</div>
+            <div className="text-blue-100 text-sm">Total SKS</div>
+          </div>
+        </div>
       </div>
     </div>
   );

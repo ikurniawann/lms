@@ -3,22 +3,22 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import {
-  BookOpen, FileText, Users, CheckSquare, TrendingUp,
-  Menu, X, Settings, ChevronRight
+  TrendingUp, Calendar, BookOpen, Wallet, Bell, MessageSquare,
+  Menu, X, ChevronRight, Users
 } from 'lucide-react';
 
 const menuItems = [
-  { icon: TrendingUp, label: 'Dashboard', href: '/dashboard-guru' },
-  { icon: BookOpen, label: 'Materi Saya', href: '/dashboard-guru/materi' },
-  { icon: FileText, label: 'Tugas', href: '/dashboard-guru/tugas' },
-  { icon: CheckSquare, label: 'Ujian', href: '/dashboard-guru/ujian' },
-  { icon: FileText, label: 'Buat Ujian', href: '/dashboard-guru/buat-ujian' },
-  { icon: Users, label: 'Siswa', href: '/dashboard-guru/students' },
-  { icon: CheckSquare, label: 'Absensi', href: '/dashboard-guru/attendance' },
-  { icon: TrendingUp, label: 'Nilai', href: '/dashboard-guru/grades' },
+  { icon: TrendingUp, label: 'Dashboard', href: '/parent/dashboard' },
+  { icon: BookOpen, label: 'Akademik', href: '/parent/academic' },
+  { icon: Calendar, label: 'Absensi', href: '/parent/attendance' },
+  { icon: BookOpen, label: 'Tugas', href: '/parent/assignments' },
+  { icon: BookOpen, label: 'Ujian', href: '/parent/exams' },
+  { icon: Wallet, label: 'Keuangan', href: '/parent/finance' },
+  { icon: Bell, label: 'Pengumuman', href: '/parent/announcements' },
+  { icon: MessageSquare, label: 'Pesan', href: '/parent/messages' },
 ];
 
-export default function DashboardGuruLayout({
+export default function ParentLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -45,10 +45,10 @@ export default function DashboardGuruLayout({
       {/* Mobile Header */}
       <header className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-40 flex items-center justify-between px-4">
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
-            <BookOpen className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+            <Users className="w-5 h-5 text-white" />
           </div>
-          <span className="text-lg font-bold text-gray-900">LMS Guru</span>
+          <span className="text-lg font-bold text-gray-900">Parent Portal</span>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -76,10 +76,10 @@ export default function DashboardGuruLayout({
         {/* Desktop Header */}
         <div className="hidden lg:flex h-16 items-center px-6 border-b border-gray-200">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+              <Users className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-bold text-gray-900">LMS Guru</span>
+            <span className="text-lg font-bold text-gray-900">Parent Portal</span>
           </div>
         </div>
 
@@ -97,12 +97,12 @@ export default function DashboardGuruLayout({
         {/* User Profile */}
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0">
-              GS
+            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0">
+              BS
             </div>
             <div className="min-w-0">
-              <div className="font-semibold text-gray-900 truncate">Budi Santoso, S.Pd</div>
-              <div className="text-xs text-gray-500">Guru Matematika</div>
+              <div className="font-semibold text-gray-900 truncate">Budi Santoso</div>
+              <div className="text-xs text-gray-500">Parent of 2 students</div>
             </div>
           </div>
         </div>
@@ -118,15 +118,15 @@ export default function DashboardGuruLayout({
                 href={item.href}
                 className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
                   isActive
-                    ? 'bg-green-50 text-green-700 border border-green-200'
+                    ? 'bg-blue-50 text-blue-700 border border-blue-200'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                 }`}
               >
                 <div className="flex items-center space-x-3">
-                  <Icon className={`w-5 h-5 ${isActive ? 'text-green-700' : 'text-gray-400'}`} />
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-blue-700' : 'text-gray-400'}`} />
                   <span className="font-medium">{item.label}</span>
                 </div>
-                <ChevronRight className={`w-4 h-4 ${isActive ? 'text-green-700' : 'text-gray-400'}`} />
+                <ChevronRight className={`w-4 h-4 ${isActive ? 'text-blue-700' : 'text-gray-400'}`} />
               </a>
             );
           })}
@@ -138,7 +138,7 @@ export default function DashboardGuruLayout({
             href="/settings"
             className="flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
           >
-            <Settings className="w-5 h-5" />
+            <Users className="w-5 h-5" />
             <span className="font-medium">Pengaturan</span>
           </a>
         </div>

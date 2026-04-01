@@ -4,7 +4,7 @@ import { Calendar, Clock, BookOpen, Users } from 'lucide-react';
 export default function JadwalPage() {
   type ScheduleItem = { subject: string; time: string; teacher: string; room: string };
   type Schedule = { [key: string]: ScheduleItem[] };
-  
+
   const schedule: Schedule = {
     'Senin': [
       { subject: 'Matematika', time: '07:00 - 08:30', teacher: 'Budi Santoso, S.Pd', room: 'R.101' },
@@ -43,66 +43,46 @@ export default function JadwalPage() {
   const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'] as const;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <aside className="fixed w-64 bg-white border-r">
-        <div className="h-16 px-6 flex items-center">
-          <Calendar className="w-6 h-6 text-blue-600"/>
-          <span className="ml-2 font-bold">LMS Siswa</span>
-        </div>
-        <nav className="p-4 space-y-1">
-          <a href="/dashboard-siswa" className="block px-4 py-3 hover:bg-gray-50">Dashboard</a>
-          <a href="/dashboard-siswa/jadwal" className="block px-4 py-3 bg-blue-50 text-blue-700">Jadwal</a>
-          <a href="/dashboard-siswa/materi" className="block px-4 py-3 hover:bg-gray-50">Materi</a>
-          <a href="/dashboard-siswa/tugas" className="block px-4 py-3 hover:bg-gray-50">Tugas</a>
-          <a href="/dashboard-siswa/ujian" className="block px-4 py-3 hover:bg-gray-50">Ujian</a>
-          <a href="/dashboard-siswa/nilai" className="block px-4 py-3 hover:bg-gray-50">Nilai</a>
-          <a href="/dashboard-siswa/absensi" className="block px-4 py-3 hover:bg-gray-50">Absensi</a>
-        </nav>
-      </aside>
+    <div>
+      {/* Page Header */}
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Jadwal Pelajaran</h1>
+        <p className="text-sm sm:text-base text-gray-600">Jadwal pelajaran mingguan kelas 8A.</p>
+      </div>
 
-      <div className="ml-64">
-        <header className="h-16 bg-white border-b px-6 flex items-center">
-          <h1 className="text-xl font-bold">Jadwal Pelajaran</h1>
-        </header>
-        <main className="p-6">
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold mb-2">Jadwal Kelas 8A</h1>
-            <p className="text-gray-600">Jadwal pelajaran mingguan.</p>
+      {/* Stats Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+        {statsCards.map((stat, i) => (
+          <div key={i} className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+            <div className="text-sm text-gray-600">{stat.title}</div>
           </div>
+        ))}
+      </div>
 
-          <div className="grid grid-cols-5 gap-4 mb-8">
-            {statsCards.map((stat, i) => (
-              <div key={i} className="bg-white p-6 rounded-xl shadow-sm border">
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.title}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {days.map((day, dayIndex) => (
-              <div key={day} className="bg-white rounded-xl shadow-sm border overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
-                  <h3 className="text-lg font-bold text-white">{day}</h3>
+      {/* Schedule Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        {days.map((day) => (
+          <div key={day} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-3">
+              <h3 className="text-lg font-bold text-white">{day}</h3>
+            </div>
+            <div className="p-4 space-y-3">
+              {schedule[day].map((item, idx) => (
+                <div key={idx} className="border-l-4 border-blue-500 pl-3 py-2">
+                  <div className="font-semibold text-gray-900 text-sm">{item.subject}</div>
+                  <div className="text-xs text-gray-600 flex items-center gap-1 mt-1">
+                    <Clock className="w-3 h-3" />
+                    {item.time}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    {item.teacher} • {item.room}
+                  </div>
                 </div>
-                <div className="p-6 space-y-4">
-                  {schedule[day].map((item, idx) => (
-                    <div key={idx} className="border-l-4 border-blue-500 pl-4 py-2">
-                      <div className="font-semibold text-gray-900">{item.subject}</div>
-                      <div className="text-sm text-gray-600 flex items-center gap-2 mt-1">
-                        <Clock className="w-3 h-3"/>
-                        {item.time}
-                      </div>
-                      <div className="text-xs text-gray-500 mt-1">
-                        {item.teacher} • {item.room}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </main>
+        ))}
       </div>
     </div>
   );
