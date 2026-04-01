@@ -144,7 +144,7 @@ export default function DashboardSiswaLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="pt-20 lg:pt-0 lg:ml-72 min-h-screen">
+      <main className="pt-20 lg:pt-4 lg:ml-72 min-h-screen lg:pl-4">
         {children}
       </main>
     </div>
