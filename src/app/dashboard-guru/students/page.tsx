@@ -1,12 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Users, Search, Eye, Edit, Plus, Trash2, Download, Upload, ChevronRight, FileText } from 'lucide-react';
+import { Users, Search, Eye, Edit, Plus, Trash2, Download, ChevronRight, FileText } from 'lucide-react';
 
 export default function SiswaPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedClass, setSelectedClass] = useState('ALL');
-  const [showAddModal, setShowAddModal] = useState(false);
 
   const students = [
     { id: 1, nis: '2024001', name: 'Ahmad Rizki', class: '7A', gender: 'L', avg: 85.5, attendance: 96, status: 'Aktif' },
@@ -107,13 +106,11 @@ export default function SiswaPage() {
         </header>
 
         <main className="p-6">
-          {</* Page Header */}
           <div className="mb-6">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Data Siswa</h1>
             <p className="text-gray-600">Kelola data siswa di kelas Anda.</p>
           </div>
 
-          {</* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
             {statsCards.map((stat, index) => {
               const Icon = stat.icon;
@@ -139,11 +136,9 @@ export default function SiswaPage() {
             })}
           </div>
 
-          {</* Actions Bar */}
           <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 mb-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex flex-col md:flex-row gap-3 flex-1">
-                {</* Search */}
                 <div className="relative flex-1 max-w-md">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
@@ -155,7 +150,6 @@ export default function SiswaPage() {
                   />
                 </div>
 
-                {</* Class Filter */}
                 <select
                   value={selectedClass}
                   onChange={(e) => setSelectedClass(e.target.value)}
@@ -168,18 +162,13 @@ export default function SiswaPage() {
                 </select>
               </div>
 
-              {</* Add Button */}
-              <button 
-                onClick={() => setShowAddModal(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all shadow-lg shadow-green-600/20"
-              >
+              <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all shadow-lg shadow-green-600/20">
                 <Plus className="w-4 h-4" />
                 <span className="text-sm font-medium">Tambah Siswa</span>
               </button>
             </div>
           </div>
 
-          {</* Students Table */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -245,7 +234,6 @@ export default function SiswaPage() {
               </table>
             </div>
 
-            {</* Empty State */}
             {filteredStudents.length === 0 && (
               <div className="py-12 text-center">
                 <Users className="w-12 h-12 text-gray-300 mx-auto mb-4" />
