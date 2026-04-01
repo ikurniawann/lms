@@ -4,7 +4,7 @@ import { useState } from 'react';
 import {
   BookOpen, FileText, Users, CheckSquare, TrendingUp,
   Plus, Search, Bell, Settings, ChevronRight,
-  Upload, Edit, Trash2, Eye, LogIn
+  Upload, Edit, Trash2, Eye
 } from 'lucide-react';
 
 export default function DashboardGuru() {
@@ -95,13 +95,9 @@ export default function DashboardGuru() {
         </nav>
 
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
-          <a href="/settings" className="flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all mb-1">
+          <a href="/settings" className="flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
             <Settings className="w-5 h-5" />
             <span className="font-medium text-sm">Pengaturan</span>
-          </a>
-          <a href="/login" className="flex items-center space-x-3 px-4 py-3 text-green-600 hover:bg-green-50 rounded-lg transition-all border border-green-200">
-            <LogIn className="w-5 h-5" />
-            <span className="font-medium text-sm">Login untuk Edit Data</span>
           </a>
         </div>
       </aside>

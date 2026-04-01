@@ -8,13 +8,7 @@ export default function UjianPage() {
   ];
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Public Notice Banner */}
-      <div className="bg-blue-600 text-white px-4 py-2 text-center text-sm fixed top-0 left-0 right-0 z-50">
-        <span className="font-semibold">👁️ Mode Public View</span> — Halaman ini dapat diakses tanpa login.
-        <a href="/login" className="underline ml-2 hover:text-blue-200">Login untuk edit</a>
-      </div>
-
-      <aside className="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200" style={{ marginTop: '36px' }}>
+      <aside className="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200">
         <div className="h-16 flex items-center px-6 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
@@ -63,13 +57,8 @@ export default function UjianPage() {
           </a>
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
-          <a href="/login" className="flex items-center space-x-3 px-4 py-3 text-green-600 hover:bg-green-50 rounded-lg transition-all border border-green-200">
-            <span className="font-medium text-sm">Login untuk Edit Data</span>
-          </a>
-        </div>
       </aside>
-      <div className="ml-64" style={{ marginTop: '36px' }}>
+      <div className="ml-64">
         <header className="h-16 bg-white border-b px-6 flex items-center"><h1 className="text-xl font-bold">Ujian</h1></header>
         <main className="p-6">
           <div className="mb-6"><h1 className="text-2xl font-bold">Ujian & Quiz</h1><p className="text-gray-600">Kelola ujian dan quiz untuk siswa.</p></div>
