@@ -43,7 +43,7 @@ export default function JadwalPage() {
   const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'] as const;
 
   return (
-    <div>
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Page Header */}
       <div className="mb-6 sm:mb-8">
         <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Jadwal Pelajaran</h1>

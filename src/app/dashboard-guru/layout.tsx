@@ -145,7 +145,7 @@ export default function DashboardGuruLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="pt-20 lg:pt-8 lg:ml-72 min-h-screen px-4 sm:px-6 lg:px-8">
+      <main className="pt-20 lg:pt-0 lg:ml-72 min-h-screen">
         {children}
       </main>
     </div>
