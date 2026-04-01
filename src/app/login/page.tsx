@@ -14,18 +14,31 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const router = useRouter();
 
+  // Demo authentication data
+  const demoUsers: Record<string, { password: string; role: string; redirect: string }> = {
+    'admin@smpn1.sch.id': { password: 'password', role: 'admin', redirect: '/dashboard' },
+    'guru@smpn1.sch.id': { password: 'password', role: 'guru', redirect: '/dashboard-guru' },
+    'siswa@smpn1.sch.id': { password: 'password', role: 'siswa', redirect: '/dashboard-siswa' },
+    'parent@smpn1.sch.id': { password: 'password', role: 'parent', redirect: '/parent/dashboard' },
+  };
+
+  const handleQuickLogin = async (demoEmail: string) => {
+    setEmail(demoEmail);
+    setPassword('password');
+    setLoading(true);
+    setError('');
+
+    const user = demoUsers[demoEmail];
+    if (user) {
+      await new Promise(resolve => setTimeout(resolve, 300));
+      router.push(user.redirect);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
-    // Demo authentication (bypass Supabase for testing)
-    const demoUsers: Record<string, { password: string; role: string; redirect: string }> = {
-      'admin@smpn1.sch.id': { password: 'password', role: 'admin', redirect: '/dashboard' },
-      'guru@smpn1.sch.id': { password: 'password', role: 'guru', redirect: '/dashboard-guru' },
-      'siswa@smpn1.sch.id': { password: 'password', role: 'siswa', redirect: '/dashboard-siswa' },
-      'parent@smpn1.sch.id': { password: 'password', role: 'parent', redirect: '/parent/dashboard' },
-    };
 
     const user = demoUsers[email];
     
@@ -35,10 +48,7 @@ export default function LoginPage() {
       return;
     }
 
-    // Simulate loading
     await new Promise(resolve => setTimeout(resolve, 500));
-
-    // Redirect based on role
     router.push(user.redirect);
   };
 
@@ -172,26 +182,46 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Demo Accounts */}
+          {/* Demo Accounts - Clickable Shortcuts */}
           <div className="space-y-3">
-            <p className="text-xs text-gray-500 text-center mb-2">Demo Accounts:</p>
-            <div className="space-y-2">
-              <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
-                <div className="text-xs font-medium text-blue-900 mb-1">👨‍💼 Admin</div>
-                <div className="text-xs text-blue-700">admin@smpn1.sch.id / password</div>
-              </div>
-              <div className="p-3 bg-green-50 rounded-lg border border-green-200">
-                <div className="text-xs font-medium text-green-900 mb-1">👨‍ Guru</div>
-                <div className="text-xs text-green-700">guru@smpn1.sch.id / password</div>
-              </div>
-              <div className="p-3 bg-purple-50 rounded-lg border border-purple-200">
-                <div className="text-xs font-medium text-purple-900 mb-1">👨‍ Siswa</div>
-                <div className="text-xs text-purple-700">siswa@smpn1.sch.id / password</div>
-              </div>
-              <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
-                <div className="text-xs font-medium text-orange-900 mb-1">👨u200d👩u200d👧 Parent</div>
-                <div className="text-xs text-orange-700">parent@smpn1.sch.id / password</div>
-              </div>
+            <p className="text-xs text-gray-500 text-center mb-2">Demo Accounts (Klik untuk login):</p>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => handleQuickLogin('admin@smpn1.sch.id')}
+                className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition-all text-left cursor-pointer group"
+              >
+                <div className="text-xs font-medium text-blue-900 mb-1 group-hover:text-blue-800">👨‍💼 Admin</div>
+                <div className="text-xs text-blue-700">admin@smpn1.sch.id</div>
+                <div className="text-[10px] text-blue-500 mt-1">Klik untuk login →</div>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleQuickLogin('guru@smpn1.sch.id')}
+                className="p-3 bg-green-50 hover:bg-green-100 rounded-lg border border-green-200 transition-all text-left cursor-pointer group"
+              >
+                <div className="text-xs font-medium text-green-900 mb-1 group-hover:text-green-800">👨‍🏫 Guru</div>
+                <div className="text-xs text-green-700">guru@smpn1.sch.id</div>
+                <div className="text-[10px] text-green-500 mt-1">Klik untuk login →</div>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleQuickLogin('siswa@smpn1.sch.id')}
+                className="p-3 bg-purple-50 hover:bg-purple-100 rounded-lg border border-purple-200 transition-all text-left cursor-pointer group"
+              >
+                <div className="text-xs font-medium text-purple-900 mb-1 group-hover:text-purple-800">👨‍🎓 Siswa</div>
+                <div className="text-xs text-purple-700">siswa@smpn1.sch.id</div>
+                <div className="text-[10px] text-purple-500 mt-1">Klik untuk login →</div>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleQuickLogin('parent@smpn1.sch.id')}
+                className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg border border-orange-200 transition-all text-left cursor-pointer group"
+              >
+                <div className="text-xs font-medium text-orange-900 mb-1 group-hover:text-orange-800">👨‍👩‍👧‍👦 Parent</div>
+                <div className="text-xs text-orange-700">parent@smpn1.sch.id</div>
+                <div className="text-[10px] text-orange-500 mt-1">Klik untuk login →</div>
+              </button>
             </div>
           </div>
         </div>
