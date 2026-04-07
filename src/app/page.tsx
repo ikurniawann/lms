@@ -1,13 +1,18 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   BookOpen, Users, Award, Clock, CheckCircle, 
   ArrowRight, Star, Building2, GraduationCap, 
-  MessageCircle, Smartphone, BarChart3
+  MessageCircle, Smartphone, BarChart3, Shield,
+  Zap, Heart, ChevronLeft, ChevronRight, Sparkles,
+  Target, Lightbulb, Globe
 } from 'lucide-react';
 
 export default function LandingPage() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const features = [
     {
       icon: BookOpen,
@@ -46,93 +51,69 @@ export default function LandingPage() {
     },
     {
       icon: Smartphone,
-      title: 'Mobile App',
-      description: 'Aplikasi mobile untuk siswa dan orang tua. Akses dimana saja, kapan saja.',
+      title: 'Mobile Ready',
+      description: 'Akses dimana saja, kapan saja melalui browser mobile. Responsive design.',
       color: 'text-teal-500',
       bgColor: 'bg-teal-500/10'
     }
   ];
 
-  const pricingPlans = [
+  const highlights = [
     {
-      name: 'STANDARD',
-      tagline: 'Go Digital Basic',
-      price: '499.000',
-      period: '/bulan',
-      description: 'Untuk sekolah kecil yang baru mulai go digital',
-      features: [
-        'Website sekolah profesional',
-        'LMS dasar (materi, tugas, kuis)',
-        'Form PPDB online',
-        'Dashboard admin sederhana',
-        'Hingga 300 siswa',
-        'Email support'
-      ],
-      cta: 'Mulai Sekarang',
-      popular: false,
-      color: 'blue'
+      icon: Zap,
+      title: 'Setup Cepat',
+      description: 'Siap pakai dalam hitungan menit. Tidak perlu instalasi software.',
+      color: 'text-yellow-500',
+      bgColor: 'bg-yellow-500/10'
     },
     {
-      name: 'PLUS',
-      tagline: 'Operational School System',
-      price: '1.499.000',
-      period: '/bulan',
-      description: 'Paling laris! Semua aktivitas sekolah tertata',
-      features: [
-        'Semua fitur STANDARD',
-        'CBT (Computer Based Test)',
-        'Absensi QR Code',
-        'Billing SPP & Payment Gateway',
-        'Portal Orang Tua',
-        'Aplikasi Mobile (iOS + Android)',
-        'Hingga 1.000 siswa',
-        'Priority support'
-      ],
-      cta: 'Paling Laris',
-      popular: true,
-      color: 'red'
+      icon: Shield,
+      title: 'Aman & Terpercaya',
+      description: 'Data terenkripsi dan backup otomatis. Privasi terjaga.',
+      color: 'text-emerald-500',
+      bgColor: 'bg-emerald-500/10'
     },
     {
-      name: 'ADVANCE',
-      tagline: 'Smart Digital School',
-      price: '4.999.000',
-      period: '/bulan',
-      description: 'Untuk sekolah besar yang ingin unggul kompetitif',
-      features: [
-        'Semua fitur PLUS',
-        'AI Auto-Grading & AI Tutor',
-        'Integrasi WhatsApp',
-        'Face Recognition Absensi',
-        'Predictive Analytics',
-        'Multi-School / Yayasan',
-        'Siswa Unlimited',
-        '24/7 Priority Support',
-        'Custom Development'
-      ],
-      cta: 'Hubungi Kami',
-      popular: false,
-      color: 'purple'
+      icon: Heart,
+      title: 'Support Penuh',
+      description: 'Tim support siap membantu kapan saja. Tutorial lengkap tersedia.',
+      color: 'text-rose-500',
+      bgColor: 'bg-rose-500/10'
     }
   ];
 
-  const stats = [
-    { number: '50+', label: 'Sekolah Mitra', icon: Building2 },
-    { number: '15.000+', label: 'Siswa Aktif', icon: Users },
-    { number: '1.200+', label: 'Guru Pengguna', icon: GraduationCap },
-    { number: '99.9%', label: 'Uptime', icon: Award }
+  const infoSlides = [
+    {
+      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=400&fit=crop',
+      title: 'Transformasi Digital Pendidikan',
+      subtitle: 'Masa depan pendidikan Indonesia',
+      description: 'Bergabunglah dengan ribuan sekolah yang telah beralih ke sistem digital. Tingkatkan efisiensi, transparansi, dan kualitas belajar-mengajar.'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=400&fit=crop',
+      title: 'Belajar Lebih Interaktif',
+      subtitle: 'Materi digital & kuis online',
+      description: 'Guru dapat mengupload materi pembelajaran, membuat kuis interaktif, dan siswa dapat belajar kapan saja, di mana saja.'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=800&h=400&fit=crop',
+      title: 'Kolaborasi Orang Tua & Sekolah',
+      subtitle: 'Pantau perkembangan anak real-time',
+      description: 'Orang tua dapat memantau nilai, absensi, dan aktivitas anak secara langsung. Komunikasi antara guru dan orang tua menjadi lebih mudah.'
+    }
   ];
 
   const testimonials = [
     {
       name: 'Drs. Ahmad Fauzi, M.Pd',
-      role: 'Kepala SMPN 1 Jakarta',
+      role: 'Kepala Sekolah',
       content: 'Sejak pakai LMS ini, administrasi sekolah jadi lebih rapi. Guru dan siswa sangat terbantu dengan sistem belajar online.',
       avatar: 'AF',
       rating: 5
     },
     {
       name: 'Siti Nurhaliza, S.Pd',
-      role: 'Guru Matematika SMPN 2 Bandung',
+      role: 'Guru Matematika',
       content: 'Upload materi dan buat kuis jadi sangat mudah. Nilai otomatis keluar, jadi hemat waktu koreksi.',
       avatar: 'SN',
       rating: 5
@@ -145,6 +126,23 @@ export default function LandingPage() {
       rating: 5
     }
   ];
+
+  const achievements = [
+    { icon: Building2, label: 'Partner Sekolah', value: 'Terpercaya' },
+    { icon: Users, label: 'Pengguna Aktif', value: 'Ribuan' },
+    { icon: GraduationCap, label: 'Tenaga Pengajar', value: 'Terintegrasi' },
+    { icon: Award, label: 'Uptime', value: 'Terjamin' }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % infoSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [infoSlides.length]);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % infoSlides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + infoSlides.length) % infoSlides.length);
 
   return (
     <div className="min-h-screen bg-white">
@@ -161,7 +159,7 @@ export default function LandingPage() {
             
             <div className="hidden md:flex items-center space-x-8">
               <Link href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Fitur</Link>
-              <Link href="#pricing" className="text-gray-600 hover:text-gray-900 transition-colors">Harga</Link>
+              <Link href="#info" className="text-gray-600 hover:text-gray-900 transition-colors">Informasi</Link>
               <Link href="#testimonials" className="text-gray-600 hover:text-gray-900 transition-colors">Testimoni</Link>
               <Link href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Kontak</Link>
             </div>
@@ -177,7 +175,7 @@ export default function LandingPage() {
                 href="/register" 
                 className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30"
               >
-                Daftar Gratis
+                Coba Gratis
               </Link>
             </div>
           </div>
@@ -191,20 +189,20 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Star className="w-4 h-4 fill-blue-700" />
-                <span>4.9/5 dari 50+ Sekolah</span>
+                <Sparkles className="w-4 h-4" />
+                <span>Platform Modern untuk Pendidikan</span>
               </div>
               
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                Platform #1 untuk{' '}
+                Solusi Digital{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                  Sekolah Digital
+                  Sekolah Modern
                 </span>
               </h1>
               
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                LMS lengkap untuk SD/SMP Negeri. Kelola belajar, absensi, keuangan, 
-                dan komunikasi dalam satu platform modern.
+                Platform terintegrasi untuk mengelola pembelajaran, absensi, 
+                keuangan, dan komunikasi sekolah dalam satu sistem yang mudah digunakan.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -212,25 +210,25 @@ export default function LandingPage() {
                   href="/register" 
                   className="inline-flex items-center justify-center space-x-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/30 text-lg"
                 >
-                  <span>Mulai Gratis</span>
+                  <span>Mulai Sekarang</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link 
-                  href="#demo" 
+                  href="#features" 
                   className="inline-flex items-center justify-center space-x-2 bg-white text-gray-700 px-8 py-4 rounded-xl font-semibold border-2 border-gray-200 hover:border-blue-600 hover:text-blue-600 transition-all text-lg"
                 >
-                  <span>Lihat Demo</span>
+                  <span>Lihat Fitur</span>
                 </Link>
               </div>
 
               <div className="flex items-center space-x-6 text-sm text-gray-500">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span>Tanpa Kartu Kredit</span>
+                  <span>Gratis Coba</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span>Setup 5 Menit</span>
+                  <span>Setup Mudah</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-5 h-5 text-green-500" />
@@ -242,31 +240,31 @@ export default function LandingPage() {
             <div className="relative">
               <div className="relative z-10">
                 <img 
-                  src="https://web.komdigi.go.id/resource/ZHJ1cGFsL2tvbWluZm8ta2VtZGlrYnVkLWRpZ2l0YWxpc2FzaS1uYXR1bmEuanBlZw==" 
-                  alt="Siswa SMP berseragam menggunakan LMS" 
+                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop" 
+                  alt="Siswa menggunakan laptop untuk belajar" 
                   className="rounded-3xl shadow-2xl w-full h-auto object-cover"
                 />
               </div>
-              <div className="absolute -top-4 -right-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob" />
-              <div className="absolute -bottom-4 -left-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000" />
+              <div className="absolute -top-4 -right-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30" />
+              <div className="absolute -bottom-4 -left-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - Generic */}
       <section className="py-16 bg-white border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
+            {achievements.map((item, index) => {
+              const Icon = item.icon;
               return (
                 <div key={index} className="text-center">
                   <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-xl mb-4">
                     <Icon className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div className="text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-lg font-semibold text-blue-600 mb-1">{item.value}</div>
+                  <div className="text-gray-600">{item.label}</div>
                 </div>
               );
             })}
@@ -274,15 +272,100 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-24 bg-gray-50">
+      {/* Info Slider Section */}
+      <section id="info" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Globe className="w-4 h-4" />
+              <span>Informasi Terkini</span>
+            </div>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Fitur Lengkap untuk Sekolah Modern
+              Transformasi Pendidikan Digital
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Semua yang sekolah butuhkan dalam satu platform terintegrasi
+              Ikuti perkembangan terbaru dalam dunia pendidikan digital
+            </p>
+          </div>
+
+          {/* Slider */}
+          <div className="relative max-w-5xl mx-auto">
+            <div className="overflow-hidden rounded-3xl shadow-2xl">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {infoSlides.map((slide, index) => (
+                  <div key={index} className="w-full flex-shrink-0">
+                    <div className="grid md:grid-cols-2">
+                      <div className="h-80 md:h-96">
+                        <img 
+                          src={slide.image} 
+                          alt={slide.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="bg-white p-8 md:p-12 flex flex-col justify-center">
+                        <p className="text-blue-600 font-semibold mb-2">{slide.subtitle}</p>
+                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{slide.title}</h3>
+                        <p className="text-gray-600 leading-relaxed">{slide.description}</p>
+                        
+                        <Link 
+                          href="#features"
+                          className="inline-flex items-center text-blue-600 font-semibold mt-6 hover:underline"
+                        >
+                          Pelajari Lebih Lanjut <ArrowRight className="w-4 h-4 ml-2" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation */}
+            <button 
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
+              <ChevronLeft className="w-6 h-6 text-gray-700" />
+            </button>
+            <button 
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
+              <ChevronRight className="w-6 h-6 text-gray-700" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {infoSlides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === currentSlide ? 'bg-blue-600' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Target className="w-4 h-4" />
+              <span>Fitur Unggulan</span>
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Semua yang Anda Butuhkan
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Platform lengkap untuk mengelola seluruh aktivitas sekolah dalam satu tempat
             </p>
           </div>
 
@@ -290,7 +373,7 @@ export default function LandingPage() {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
+                <div key={index} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
                   <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${feature.bgColor} mb-6`}>
                     <Icon className={`w-7 h-7 ${feature.color}`} />
                   </div>
@@ -303,84 +386,35 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-24 bg-white">
+      {/* Highlights Section */}
+      <section className="py-24 bg-gradient-to-br from-blue-600 to-purple-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Pilih Paket yang Sesuai
+            <div className="inline-flex items-center space-x-2 bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Lightbulb className="w-4 h-4" />
+              <span>Mengapa Memilih Kami?</span>
+            </div>
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Keunggulan Platform Kami
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Harga transparan, tanpa biaya tersembunyi
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Dirancang khusus untuk memudahkan pengelolaan sekolah Anda
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {pricingPlans.map((plan, index) => (
-              <div 
-                key={index}
-                className={`relative rounded-2xl p-8 ${
-                  plan.popular 
-                    ? 'bg-gradient-to-br from-red-600 to-red-700 text-white shadow-2xl shadow-red-600/30 scale-105' 
-                    : 'bg-white border-2 border-gray-200 hover:border-blue-600'
-                } transition-all duration-300`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-bold">
-                      ⭐ Paling Laris
-                    </span>
+          <div className="grid md:grid-cols-3 gap-8">
+            {highlights.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${item.bgColor} mb-6`}>
+                    <Icon className={`w-7 h-7 ${item.color}`} />
                   </div>
-                )}
-
-                <div className="mb-6">
-                  <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
-                    {plan.name}
-                  </h3>
-                  <p className={`text-sm ${plan.popular ? 'text-red-100' : 'text-gray-600'}`}>
-                    {plan.tagline}
-                  </p>
+                  <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                  <p className="text-blue-100 leading-relaxed">{item.description}</p>
                 </div>
-
-                <div className="mb-6">
-                  <div className="flex items-baseline">
-                    <span className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
-                      Rp {plan.price}
-                    </span>
-                    <span className={`ml-2 ${plan.popular ? 'text-red-100' : 'text-gray-600'}`}>
-                      {plan.period}
-                    </span>
-                  </div>
-                  <p className={`text-sm mt-2 ${plan.popular ? 'text-red-100' : 'text-gray-600'}`}>
-                    {plan.description}
-                  </p>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start space-x-3">
-                      <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
-                        plan.popular ? 'text-red-200' : 'text-green-500'
-                      }`} />
-                      <span className={`text-sm ${plan.popular ? 'text-white' : 'text-gray-700'}`}>
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href="/register"
-                  className={`block w-full py-4 rounded-xl font-semibold text-center transition-all ${
-                    plan.popular
-                      ? 'bg-white text-red-600 hover:bg-gray-100'
-                      : 'bg-blue-600 text-white hover:bg-blue-700'
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -389,11 +423,15 @@ export default function LandingPage() {
       <section id="testimonials" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Star className="w-4 h-4 fill-yellow-700" />
+              <span>Testimoni Pengguna</span>
+            </div>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Apa Kata Mereka?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Dari 50+ sekolah yang sudah menggunakan LMS kami
+              Testimoni dari sekolah-sekolah yang telah menggunakan platform kami
             </p>
           </div>
 
@@ -422,28 +460,34 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-600 to-purple-700">
+      <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Siap Transformasi Sekolah Anda?
+          <div className="inline-flex items-center space-x-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Zap className="w-4 h-4" />
+            <span>Siap Memulai?</span>
+          </div>
+          
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            Transformasi Sekolah Anda Sekarang
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Bergabung dengan 50+ sekolah yang sudah go digital bersama kami. 
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Bergabunglah dengan sekolah-sekolah yang telah beralih ke sistem digital. 
             Mulai gratis, tanpa kartu kredit.
           </p>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/register" 
-              className="inline-flex items-center justify-center space-x-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-xl text-lg"
+              className="inline-flex items-center justify-center space-x-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-xl text-lg"
             >
-              <span>Mulai Gratis Sekarang</span>
+              <span>Coba Gratis Sekarang</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link 
               href="/contact" 
-              className="inline-flex items-center justify-center space-x-2 bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-800 transition-all border-2 border-white/30 text-lg"
+              className="inline-flex items-center justify-center space-x-2 bg-gray-100 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:bg-gray-200 transition-all text-lg"
             >
-              <span>Hubungi Sales</span>
+              <span>Hubungi Kami</span>
             </Link>
           </div>
         </div>
@@ -461,8 +505,8 @@ export default function LandingPage() {
                 <span className="text-xl font-bold">LMS Sekolah</span>
               </div>
               <p className="text-gray-400 mb-6 max-w-md">
-                Platform manajemen sekolah modern untuk SD/SMP Negeri di Indonesia. 
-                Transformasi digital sekolah Anda bersama kami.
+                Platform manajemen sekolah modern untuk meningkatkan kualitas pendidikan. 
+                Solusi terintegrasi untuk sekolah di Indonesia.
               </p>
               <div className="flex space-x-4">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">Facebook</a>
@@ -476,7 +520,7 @@ export default function LandingPage() {
               <h3 className="font-semibold mb-4">Produk</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><Link href="#features" className="hover:text-white transition-colors">Fitur</Link></li>
-                <li><Link href="#pricing" className="hover:text-white transition-colors">Harga</Link></li>
+                <li><Link href="#info" className="hover:text-white transition-colors">Informasi</Link></li>
                 <li><Link href="/demo" className="hover:text-white transition-colors">Demo</Link></li>
                 <li><Link href="/changelog" className="hover:text-white transition-colors">Changelog</Link></li>
               </ul>
@@ -494,7 +538,7 @@ export default function LandingPage() {
           </div>
 
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2026 LMS Sekolah. All rights reserved. Dibuat dengan ❤️ untuk Indonesia</p>
+            <p>&copy; 2026 LMS Sekolah. All rights reserved.</p>
           </div>
         </div>
       </footer>
