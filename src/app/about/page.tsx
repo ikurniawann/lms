@@ -199,6 +199,9 @@ export default function AboutPage() {
             <p className="text-gray-400">Senin - Jumat: 07:00 - 15:00<br/>Sabtu: 07:00 - 12:00</p>
           </div>
         </div>
+        <div className="max-w-6xl mx-auto mt-8 pt-8 border-t border-gray-800 text-center">
+          <p className="text-gray-400">Dibuat oleh <span className="text-blue-400 font-semibold">ION Network</span></p>
+        </div>
       </footer>
     </div>
   );
