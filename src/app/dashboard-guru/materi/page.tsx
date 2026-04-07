@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import {
   BookOpen, Plus, Search, Filter, Edit, Trash2, Download, Upload, Eye,
   FileText, Video, Image, File, Menu, X, CheckCircle, AlertCircle, XCircle, FileSpreadsheet, FileCode
@@ -482,7 +482,6 @@ export default function MateriSaya() {
         <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40">
           <div className="h-full px-4 sm:px-6 flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              {/* Hamburger Menu */}
               <button 
                 onClick={() => setSidebarOpen(!sidebarOpen)} 
                 className="p-2 hover:bg-gray-100 rounded-lg lg:hidden"
@@ -503,7 +502,6 @@ export default function MateriSaya() {
 
         {/* Content */}
         <main className="p-4 sm:p-6 lg:p-8">
-          {/* Page Header */}
           <div className="mb-8">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Materi Saya</h1>
             <p className="text-gray-600">Kelola materi pembelajaran untuk siswa.</p>
@@ -540,7 +538,6 @@ export default function MateriSaya() {
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex flex-col md:flex-row gap-4 flex-1">
-                {/* Search */}
                 <div className="relative flex-1 max-w-md">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
@@ -552,7 +549,6 @@ export default function MateriSaya() {
                   />
                 </div>
 
-                {/* Class Filter */}
                 <select
                   value={selectedClass}
                   onChange={(e) => setSelectedClass(e.target.value)}
@@ -567,7 +563,6 @@ export default function MateriSaya() {
                   <option value="9B">9B</option>
                 </select>
 
-                {/* Subject Filter */}
                 <select
                   value={selectedSubject}
                   onChange={(e) => setSelectedSubject(e.target.value)}
