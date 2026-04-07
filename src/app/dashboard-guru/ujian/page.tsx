@@ -372,7 +372,7 @@ export default function UjianPage() {
 
         {isExpanded && (
           <div className="px-4 pb-4">
-            <!-- Options untuk Multiple Choice / Checkbox -->
+            {/* Options untuk Multiple Choice / Checkbox */}
             {(question.type === 'multiple_choice' || question.type === 'checkbox') && question.options && (
               <div className="space-y-2 mb-4">
                 {question.options.map((opt, idx) => (
@@ -389,7 +389,7 @@ export default function UjianPage() {
                       className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-green-500"
                       placeholder={`Pilihan ${idx + 1}`}
                     />
-                    {!isPreview && question.options.length > 2 && (
+                    {!isPreview && question.options && question.options.length > 2 && (
                       <button 
                         onClick={() => deleteOption(question.id, idx)}
                         className="p-1 hover:bg-red-50 rounded"
@@ -411,7 +411,7 @@ export default function UjianPage() {
               </div>
             )}
 
-            <!-- Jawaban untuk Short Answer / Essay -->
+            {/* Jawaban untuk Short Answer / Essay */}
             {(question.type === 'short_answer' || question.type === 'essay') && (
               <div className="mb-4">
                 {question.type === 'short_answer' ? (
@@ -479,7 +479,7 @@ export default function UjianPage() {
       {(showCreateModal || showEditModal) && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col">
-            <!-- Header -->
+            {/*  Header  */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{showEditModal ? 'Edit Ujian' : 'Buat Ujian Baru'}</h2>
@@ -497,9 +497,9 @@ export default function UjianPage() {
               </button>
             </div>
 
-            <!-- Content -->
+            {/*  Content  */}
             <div className="flex-1 overflow-hidden flex">
-              <!-- Left Panel: Settings -->
+              {/*  Left Panel: Settings  */}
               <div className="w-1/3 border-r border-gray-200 overflow-y-auto p-6">
                 <div className="space-y-5">
                   <div>
@@ -630,7 +630,7 @@ export default function UjianPage() {
                     />
                   </div>
 
-                  <!-- Summary -->
+                  {/* Summary */}
                   <div className="bg-green-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-green-800 mb-2">Ringkasan</h4>
                     <div className="text-sm text-green-700 space-y-1">
@@ -641,7 +641,7 @@ export default function UjianPage() {
                 </div>
               </div>
 
-              <!-- Right Panel: Questions -->
+              {/* Right Panel: Questions */}
               <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
                 <div className="mb-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Soal Ujian</h3>
@@ -660,7 +660,7 @@ export default function UjianPage() {
                   )}
                 </div>
 
-                <!-- Add Question Buttons -->
+                {/*  Add Question Buttons  */}
                 <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
                   <p className="text-sm font-medium text-gray-700 mb-3">Tambah Soal:</p>
                   <div className="flex flex-wrap gap-2">
@@ -679,7 +679,7 @@ export default function UjianPage() {
               </div>
             </div>
 
-            <!-- Footer -->
+            {/* Footer */}
             <div className="flex items-center justify-between p-6 border-t border-gray-200">
               <div className="text-sm text-gray-500">
                 {newQuestions.length} soal • {newQuestions.reduce((acc, q) => acc + q.points, 0)} poin
@@ -725,7 +725,7 @@ export default function UjianPage() {
             </div>
 
             <div className="p-6">
-              <!-- Header Info -->
+              {/* Header Info */}
               <div className="flex items-start gap-4 mb-6">
                 <div className="p-4 bg-green-100 text-green-600 rounded-xl">
                   <FileText className="w-8 h-8" />
@@ -738,7 +738,7 @@ export default function UjianPage() {
                 </div>
               </div>
 
-              <!-- Info Grid -->
+              {/*  Info Grid  */}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <div className="flex items-center gap-2 text-gray-500 text-sm mb-1">
@@ -784,7 +784,7 @@ export default function UjianPage() {
                 </div>
               )}
 
-              <!-- Questions Preview -->
+              {/* Questions Preview */}
               {viewingExam.questions && viewingExam.questions.length > 0 && (
                 <div className="border-t border-gray-200 pt-6">
                   <h4 className="font-semibold text-gray-900 mb-4">Daftar Soal</h4>
