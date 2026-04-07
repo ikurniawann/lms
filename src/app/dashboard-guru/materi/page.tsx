@@ -1,25 +1,44 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   BookOpen, Plus, Search, Filter, Edit, Trash2, Download, Upload, Eye,
-  FileText, Video, Image, File, Menu, X
+  FileText, Video, Image, File, Menu, X, CheckCircle, AlertCircle, XCircle, FileSpreadsheet, FileCode
 } from 'lucide-react';
+
+interface Material {
+  id: number;
+  title: string;
+  class: string;
+  subject: string;
+  type: string;
+  size: string;
+  uploaded: string;
+  downloads: number;
+  fileUrl?: string;
+}
 
 export default function MateriSaya() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedClass, setSelectedClass] = useState('ALL');
   const [selectedSubject, setSelectedSubject] = useState('ALL');
-
-  const materials = [
-    { id: 1, title: 'Aljabar Linear', class: '7A', subject: 'Matematika', type: 'PDF', size: '2.4 MB', uploaded: '2 jam lalu', downloads: 28 },
-    { id: 2, title: 'Geometri Dasar', class: '7B', subject: 'Matematika', type: 'PPT', size: '5.1 MB', uploaded: '5 jam lalu', downloads: 25 },
-    { id: 3, title: 'Persamaan Kuadrat', class: '8A', subject: 'Matematika', type: 'PDF', size: '3.2 MB', uploaded: '1 hari lalu', downloads: 30 },
-    { id: 4, title: 'Fungsi Linear', class: '8B', subject: 'Matematika', type: 'Video', size: '45.8 MB', uploaded: '2 hari lalu', downloads: 42 },
-    { id: 5, title: 'Statistika Dasar', class: '9A', subject: 'Matematika', type: 'PDF', size: '2.8 MB', uploaded: '3 hari lalu', downloads: 35 },
-    { id: 6, title: 'Peluang', class: '9B', subject: 'Matematika', type: 'PPT', size: '4.5 MB', uploaded: '4 hari lalu', downloads: 28 },
-  ];
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadStatus, setUploadStatus] = useState<'idle' | 'uploading' | 'success' | 'error'>('idle');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [notification, setNotification] = useState<{message: string, type: 'success' | 'error'} | null>(null);
+  const [materials, setMaterials] = useState<Material[]>([
+    { id: 1, title: 'Aljabar Linear', class: '7A', subject: 'Matematika', type: 'PDF', size: '2.4 MB', uploaded: '2 jam lalu', downloads: 28, fileUrl: '#' },
+    { id: 2, title: 'Geometri Dasar', class: '7B', subject: 'Matematika', type: 'PPT', size: '5.1 MB', uploaded: '5 jam lalu', downloads: 25, fileUrl: '#' },
+    { id: 3, title: 'Persamaan Kuadrat', class: '8A', subject: 'Matematika', type: 'PDF', size: '3.2 MB', uploaded: '1 hari lalu', downloads: 30, fileUrl: '#' },
+    { id: 4, title: 'Fungsi Linear', class: '8B', subject: 'Matematika', type: 'Video', size: '45.8 MB', uploaded: '2 hari lalu', downloads: 42, fileUrl: '#' },
+    { id: 5, title: 'Statistika Dasar', class: '9A', subject: 'Matematika', type: 'PDF', size: '2.8 MB', uploaded: '3 hari lalu', downloads: 35, fileUrl: '#' },
+    { id: 6, title: 'Peluang', class: '9B', subject: 'Matematika', type: 'PPT', size: '4.5 MB', uploaded: '4 hari lalu', downloads: 28, fileUrl: '#' },
+  ]);
+  const [editingMaterial, setEditingMaterial] = useState<Material | null>(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const filteredMaterials = materials.filter(mat => {
     const searchMatch = mat.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -29,34 +48,346 @@ export default function MateriSaya() {
   });
 
   const statsCards = [
-    { title: 'Total Materi', value: '45', change: '+8', icon: BookOpen, color: 'blue' },
+    { title: 'Total Materi', value: materials.length.toString(), change: '+8', icon: BookOpen, color: 'blue' },
     { title: 'Total Downloads', value: '1,234', change: '+156', icon: Download, color: 'green' },
-    { title: 'PDF', value: '28', icon: FileText, color: 'purple' },
-    { title: 'Video', value: '12', icon: Video, color: 'orange' },
+    { title: 'PDF', value: materials.filter(m => m.type === 'PDF').length.toString(), icon: FileText, color: 'purple' },
+    { title: 'Video', value: materials.filter(m => m.type === 'Video').length.toString(), icon: Video, color: 'orange' },
   ];
 
   const getFileIcon = (type: string) => {
-    switch(type) {
+    switch(type.toUpperCase()) {
       case 'PDF': return <FileText className="w-5 h-5" />;
       case 'PPT': return <FileText className="w-5 h-5" />;
-      case 'Video': return <Video className="w-5 h-5" />;
-      case 'Image': return <Image className="w-5 h-5" />;
+      case 'VIDEO': return <Video className="w-5 h-5" />;
+      case 'IMAGE': return <Image className="w-5 h-5" />;
+      case 'EXCEL': return <FileSpreadsheet className="w-5 h-5" />;
+      case 'WORD': return <FileText className="w-5 h-5" />;
+      case 'CODE': return <FileCode className="w-5 h-5" />;
       default: return <File className="w-5 h-5" />;
     }
   };
 
   const getFileColor = (type: string) => {
-    switch(type) {
+    switch(type.toUpperCase()) {
       case 'PDF': return 'bg-red-100 text-red-600';
       case 'PPT': return 'bg-orange-100 text-orange-600';
-      case 'Video': return 'bg-blue-100 text-blue-600';
-      case 'Image': return 'bg-purple-100 text-purple-600';
+      case 'VIDEO': return 'bg-blue-100 text-blue-600';
+      case 'IMAGE': return 'bg-purple-100 text-purple-600';
+      case 'EXCEL': return 'bg-green-100 text-green-600';
+      case 'WORD': return 'bg-blue-100 text-blue-600';
+      case 'CODE': return 'bg-gray-100 text-gray-600';
       default: return 'bg-gray-100 text-gray-600';
+    }
+  };
+
+  const getFileType = (filename: string): string => {
+    const ext = filename.split('.').pop()?.toLowerCase() || '';
+    const typeMap: { [key: string]: string } = {
+      'pdf': 'PDF',
+      'ppt': 'PPT',
+      'pptx': 'PPT',
+      'mp4': 'Video',
+      'avi': 'Video',
+      'mov': 'Video',
+      'jpg': 'Image',
+      'jpeg': 'Image',
+      'png': 'Image',
+      'gif': 'Image',
+      'xls': 'Excel',
+      'xlsx': 'Excel',
+      'doc': 'Word',
+      'docx': 'Word',
+      'js': 'Code',
+      'ts': 'Code',
+      'html': 'Code',
+      'css': 'Code',
+    };
+    return typeMap[ext] || 'File';
+  };
+
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      setNotification({ message: 'Pilih file terlebih dahulu', type: 'error' });
+      setTimeout(() => setNotification(null), 3000);
+      return;
+    }
+
+    setUploadStatus('uploading');
+    setUploadProgress(0);
+
+    // Simulate upload progress
+    const progressInterval = setInterval(() => {
+      setUploadProgress(prev => {
+        if (prev >= 90) {
+          clearInterval(progressInterval);
+          return 90;
+        }
+        return prev + 10;
+      });
+    }, 300);
+
+    // Simulate completion after 3 seconds
+    setTimeout(() => {
+      clearInterval(progressInterval);
+      setUploadProgress(100);
+      
+      // Add new material to list
+      const newMaterial: Material = {
+        id: Date.now(),
+        title: selectedFile.name.replace(/\.[^/.]+$/, ''),
+        class: '7A',
+        subject: 'Matematika',
+        type: getFileType(selectedFile.name),
+        size: formatFileSize(selectedFile.size),
+        uploaded: 'Baru saja',
+        downloads: 0,
+        fileUrl: '#'
+      };
+      
+      setMaterials(prev => [newMaterial, ...prev]);
+      setUploadStatus('success');
+      
+      setTimeout(() => {
+        setShowUploadModal(false);
+        setUploadStatus('idle');
+        setUploadProgress(0);
+        setSelectedFile(null);
+        setNotification({ message: 'Materi berhasil diupload!', type: 'success' });
+        setTimeout(() => setNotification(null), 3000);
+      }, 1000);
+    }, 3000);
+  };
+
+  const handleView = (material: Material) => {
+    setNotification({ message: `Menampilkan preview: ${material.title}`, type: 'success' });
+    setTimeout(() => setNotification(null), 3000);
+  };
+
+  const handleDownload = (material: Material) => {
+    // Simulate download
+    setMaterials(prev => prev.map(m => 
+      m.id === material.id ? { ...m, downloads: m.downloads + 1 } : m
+    ));
+    setNotification({ message: `Downloading ${material.title}...`, type: 'success' });
+    setTimeout(() => setNotification(null), 3000);
+  };
+
+  const handleEdit = (material: Material) => {
+    setEditingMaterial(material);
+    setShowEditModal(true);
+  };
+
+  const handleSaveEdit = () => {
+    if (editingMaterial) {
+      setMaterials(prev => prev.map(m => 
+        m.id === editingMaterial.id ? editingMaterial : m
+      ));
+      setShowEditModal(false);
+      setEditingMaterial(null);
+      setNotification({ message: 'Materi berhasil diupdate!', type: 'success' });
+      setTimeout(() => setNotification(null), 3000);
+    }
+  };
+
+  const handleDelete = (material: Material) => {
+    if (confirm(`Hapus materi "${material.title}"?`)) {
+      setMaterials(prev => prev.filter(m => m.id !== material.id));
+      setNotification({ message: 'Materi berhasil dihapus!', type: 'success' });
+      setTimeout(() => setNotification(null), 3000);
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Notification Toast */}
+      {notification && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center space-x-2 px-4 py-3 rounded-lg shadow-lg transition-all ${
+          notification.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+        }`}>
+          {notification.type === 'success' ? (
+            <CheckCircle className="w-5 h-5" />
+          ) : (
+            <AlertCircle className="w-5 h-5" />
+          )}
+          <span className="font-medium">{notification.message}</span>
+        </div>
+      )}
+
+      {/* Upload Modal */}
+      {showUploadModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-gray-900">Upload Materi</h2>
+              <button 
+                onClick={() => {
+                  setShowUploadModal(false);
+                  setUploadStatus('idle');
+                  setUploadProgress(0);
+                  setSelectedFile(null);
+                }}
+                className="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <XCircle className="w-5 h-5 text-gray-500" />
+              </button>
+            </div>
+
+            {uploadStatus === 'idle' && (
+              <div 
+                onClick={() => fileInputRef.current?.click()}
+                className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-green-500 hover:bg-green-50 transition-all"
+              >
+                <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-lg font-medium text-gray-700 mb-2">Klik atau drag file ke sini</p>
+                <p className="text-sm text-gray-500">Support: PDF, PPT, Video, Image, Excel, Word, dll</p>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  onChange={handleFileSelect}
+                  className="hidden"
+                  accept="*/*"
+                />
+              </div>
+            )}
+
+            {selectedFile && uploadStatus === 'idle' && (
+              <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center space-x-3">
+                  <div className={`p-2 rounded-lg ${getFileColor(getFileType(selectedFile.name))}`}>
+                    {getFileIcon(getFileType(selectedFile.name))}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-gray-900 truncate">{selectedFile.name}</p>
+                    <p className="text-sm text-gray-500">{formatFileSize(selectedFile.size)}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={handleUpload}
+                  className="w-full mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all"
+                >
+                  Upload Sekarang
+                </button>
+              </div>
+            )}
+
+            {uploadStatus === 'uploading' && (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 border-4 border-green-200 border-t-green-600 rounded-full animate-spin mx-auto mb-4" />
+                <p className="text-lg font-medium text-gray-900 mb-2">Mengupload...</p>
+                <p className="text-sm text-gray-500 mb-4">{uploadProgress}%</p>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${uploadProgress}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
+            {uploadStatus === 'success' && (
+              <div className="text-center py-8">
+                <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                <p className="text-lg font-medium text-gray-900">Upload Berhasil!</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Edit Modal */}
+      {showEditModal && editingMaterial && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-gray-900">Edit Materi</h2>
+              <button 
+                onClick={() => {
+                  setShowEditModal(false);
+                  setEditingMaterial(null);
+                }}
+                className="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <XCircle className="w-5 h-5 text-gray-500" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Judul</label>
+                <input
+                  type="text"
+                  value={editingMaterial.title}
+                  onChange={(e) => setEditingMaterial({...editingMaterial, title: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Kelas</label>
+                <select
+                  value={editingMaterial.class}
+                  onChange={(e) => setEditingMaterial({...editingMaterial, class: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                >
+                  <option value="7A">7A</option>
+                  <option value="7B">7B</option>
+                  <option value="8A">8A</option>
+                  <option value="8B">8B</option>
+                  <option value="9A">9A</option>
+                  <option value="9B">9B</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Mata Pelajaran</label>
+                <select
+                  value={editingMaterial.subject}
+                  onChange={(e) => setEditingMaterial({...editingMaterial, subject: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                >
+                  <option value="Matematika">Matematika</option>
+                  <option value="IPA">IPA</option>
+                  <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                  <option value="Bahasa Inggris">Bahasa Inggris</option>
+                  <option value="IPS">IPS</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex space-x-3 mt-6">
+              <button
+                onClick={() => {
+                  setShowEditModal(false);
+                  setEditingMaterial(null);
+                }}
+                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                Batal
+              </button>
+              <button
+                onClick={handleSaveEdit}
+                className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+              >
+                Simpan
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mobile Overlay */}
       {sidebarOpen && (
         <div 
@@ -249,7 +580,10 @@ export default function MateriSaya() {
                 </select>
               </div>
 
-              <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all shadow-lg shadow-green-600/30">
+              <button 
+                onClick={() => setShowUploadModal(true)}
+                className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all shadow-lg shadow-green-600/30"
+              >
                 <Upload className="w-4 h-4" />
                 <span className="text-sm font-medium">Upload Materi</span>
               </button>
@@ -299,16 +633,28 @@ export default function MateriSaya() {
                       <td className="py-4 px-6 text-sm text-gray-600">{mat.uploaded}</td>
                       <td className="py-4 px-6">
                         <div className="flex items-center space-x-2">
-                          <button className="p-2 hover:bg-blue-50 rounded-lg transition-all" title="Lihat">
+                          <button 
+                            onClick={() => handleView(mat)}
+                            className="p-2 hover:bg-blue-50 rounded-lg transition-all" title="Lihat"
+                          >
                             <Eye className="w-4 h-4 text-blue-600" />
                           </button>
-                          <button className="p-2 hover:bg-green-50 rounded-lg transition-all" title="Download">
+                          <button 
+                            onClick={() => handleDownload(mat)}
+                            className="p-2 hover:bg-green-50 rounded-lg transition-all" title="Download"
+                          >
                             <Download className="w-4 h-4 text-green-600" />
                           </button>
-                          <button className="p-2 hover:bg-yellow-50 rounded-lg transition-all" title="Edit">
+                          <button 
+                            onClick={() => handleEdit(mat)}
+                            className="p-2 hover:bg-yellow-50 rounded-lg transition-all" title="Edit"
+                          >
                             <Edit className="w-4 h-4 text-yellow-600" />
                           </button>
-                          <button className="p-2 hover:bg-red-50 rounded-lg transition-all" title="Hapus">
+                          <button 
+                            onClick={() => handleDelete(mat)}
+                            className="p-2 hover:bg-red-50 rounded-lg transition-all" title="Hapus"
+                          >
                             <Trash2 className="w-4 h-4 text-red-600" />
                           </button>
                         </div>
