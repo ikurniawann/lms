@@ -240,8 +240,8 @@ export default function LandingPage() {
             <div className="relative">
               <div className="relative z-10">
                 <img 
-                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop" 
-                  alt="Siswa menggunakan laptop untuk belajar" 
+                  src="https://web.komdigi.go.id/resource/ZHJ1cGFsL2tvbWluZm8ta2VtZGlrYnVkLWRpZ2l0YWxpc2FzaS1uYXR1bmEuanBlZw==" 
+                  alt="Siswa SMP berseragam menggunakan LMS" 
                   className="rounded-3xl shadow-2xl w-full h-auto object-cover"
                 />
               </div>
