@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import {
   BookOpen, Plus, Search, Filter, Edit, Trash2, Download, Upload, Eye,
   FileText, Video, Image, File, Menu, X, CheckCircle, AlertCircle, XCircle, FileSpreadsheet, FileCode,
-  Calendar, Clock, User, Hash, ExternalLink
+  Calendar, Clock, User, Hash, ExternalLink, ChevronLeft, ChevronRight, ZoomIn, ZoomOut
 } from 'lucide-react';
 
 interface Material {
@@ -47,6 +47,10 @@ export default function MateriSaya() {
   const [downloadingMaterial, setDownloadingMaterial] = useState<Material | null>(null);
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [showPdfViewer, setShowPdfViewer] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+  const [pdfZoom, setPdfZoom] = useState(100);
+  const [pdfPage, setPdfPage] = useState(1);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const filteredMaterials = materials.filter(mat => {
@@ -207,18 +211,29 @@ export default function MateriSaya() {
       clearInterval(progressInterval);
       setDownloadProgress(100);
       
-      setMaterials(prev => prev.map(m => 
+      setMaterials(prev => prev.map(m =>
         m.id === material.id ? { ...m, downloads: m.downloads + 1 } : m
       ));
 
-      setTimeout(() => {
-        setIsDownloading(false);
-        setShowDownloadModal(false);
-        setDownloadingMaterial(null);
-        setNotification({ message: `${material.title} berhasil diunduh!`, type: 'success' });
-        setTimeout(() => setNotification(null), 3000);
-      }, 800);
+      setIsDownloading(false);
     }, 2000);
+  };
+
+  const openPdfViewer = (material: Material) => {
+    const samplePdf = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+    setPdfUrl(samplePdf);
+    setPdfZoom(100);
+    setPdfPage(1);
+    setShowPdfViewer(true);
+    setShowDownloadModal(false);
+  };
+
+  const closePdfViewer = () => {
+    setShowPdfViewer(false);
+    setPdfUrl(null);
+    setPdfZoom(100);
+    setPdfPage(1);
+    setDownloadingMaterial(null);
   };
 
   const handleEdit = (material: Material) => {
@@ -250,7 +265,7 @@ export default function MateriSaya() {
     <div className="p-4 sm:p-6 lg:p-8">
       {/* Notification Toast */}
       {notification && (
-        <div className={`fixed top-4 right-4 z-50 flex items-center space-x-2 px-4 py-3 rounded-lg shadow-lg transition-all ${
+        <div className={`fixed top-4 right-4 z-[60] flex items-center space-x-2 px-4 py-3 rounded-lg shadow-lg transition-all ${
           notification.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
         }`}>
           {notification.type === 'success' ? (
@@ -259,6 +274,66 @@ export default function MateriSaya() {
             <AlertCircle className="w-5 h-5" />
           )}
           <span className="font-medium">{notification.message}</span>
+        </div>
+      )}
+
+      {/* PDF Viewer Modal */}
+      {showPdfViewer && pdfUrl && (
+        <div className="fixed inset-0 bg-black/80 z-[60] flex flex-col">
+          {/* PDF Toolbar */}
+          <div className="bg-gray-900 text-white px-4 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <button onClick={closePdfViewer} className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                <X className="w-5 h-5" />
+              </button>
+              <div>
+                <h3 className="font-semibold text-sm">{downloadingMaterial?.title || 'PDF Viewer'}</h3>
+                <p className="text-xs text-gray-400">{downloadingMaterial?.type} - {downloadingMaterial?.size}</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {/* Zoom controls */}
+              <div className="flex items-center bg-gray-800 rounded-lg">
+                <button onClick={() => setPdfZoom(z => Math.max(50, z - 10))} className="p-2 hover:bg-gray-700 rounded-l-lg">
+                  <ZoomOut className="w-4 h-4" />
+                </button>
+                <span className="px-3 text-sm min-w-[60px] text-center">{pdfZoom}%</span>
+                <button onClick={() => setPdfZoom(z => Math.min(200, z + 10))} className="p-2 hover:bg-gray-700 rounded-r-lg">
+                  <ZoomIn className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Page navigation */}
+              <div className="flex items-center bg-gray-800 rounded-lg ml-2">
+                <button onClick={() => setPdfPage(p => Math.max(1, p - 1))} className="p-2 hover:bg-gray-700 rounded-l-lg">
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span className="px-3 text-sm">Hal {pdfPage}</span>
+                <button onClick={() => setPdfPage(p => p + 1)} className="p-2 hover:bg-gray-700 rounded-r-lg">
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+
+              <button 
+                onClick={() => window.open(pdfUrl, '_blank')}
+                className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg ml-4"
+              >
+                <Download className="w-4 h-4" />
+                <span className="text-sm">Download</span>
+              </button>
+            </div>
+          </div>
+
+          {/* PDF Content */}
+          <div className="flex-1 bg-gray-800 overflow-auto flex items-center justify-center p-8">
+            <iframe
+              src={`${pdfUrl}#page=${pdfPage} &zoom=${pdfZoom}`}
+              className="w-full h-full max-w-5xl bg-white shadow-2xl rounded-lg"
+              style={{ transform: `scale(${pdfZoom / 100})`, transformOrigin: 'center top' }}
+              title="PDF Viewer"
+            />
+          </div>
         </div>
       )}
 
@@ -363,18 +438,30 @@ export default function MateriSaya() {
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
             {!isDownloading && downloadProgress === 100 ? (
-              <div className="text-center py-8">
+              <div className="text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-green-600" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Download Berhasil!</h3>
-                <p className="text-gray-600 mb-4"><span className="font-semibold">{downloadingMaterial.title}</span> berhasil diunduh.</p>
-                <button
-                  onClick={() => { setShowDownloadModal(false); setDownloadingMaterial(null); setDownloadProgress(0); }}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-                >
-                  Tutup
-                </button>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">File Siap!</h3>
+                <p className="text-gray-600 mb-6"><span className="font-semibold">{downloadingMaterial.title}</span> berhasil dimuat.</p>
+
+                <div className="flex flex-col gap-3">
+                  {downloadingMaterial.type === 'PDF' && (
+                    <button
+                      onClick={() => openPdfViewer(downloadingMaterial)}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    >
+                      <Eye className="w-5 h-5" />
+                      <span>Buka di PDF Viewer</span>
+                    </button>
+                  )}
+                  <button
+                    onClick={() => { setShowDownloadModal(false); setDownloadingMaterial(null); setDownloadProgress(0); }}
+                    className="w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+                  >
+                    Tutup
+                  </button>
+                </div>
               </div>
             ) : (
               <>
