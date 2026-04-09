@@ -1,13 +1,28 @@
 'use client';
-import { BookOpen, Download, FileText, Video, Search } from 'lucide-react';
+import { useState } from 'react';
+import { BookOpen, Download, FileText, Video, Search, Eye, X } from 'lucide-react';
+
+interface Material {
+  id: number;
+  title: string;
+  subject: string;
+  type: 'PDF' | 'PPT' | 'Video' | 'DOC';
+  size: string;
+  uploaded: string;
+  teacher: string;
+  fileUrl: string;
+}
 
 export default function MateriPage() {
-  const materials = [
-    { id: 1, title: 'Aljabar Linear', subject: 'Matematika', type: 'PDF', size: '2.4 MB', uploaded: '2 hari lalu', teacher: 'Budi Santoso, S.Pd' },
-    { id: 2, title: 'Geometri Dasar', subject: 'Matematika', type: 'PPT', size: '5.1 MB', uploaded: '3 hari lalu', teacher: 'Budi Santoso, S.Pd' },
-    { id: 3, title: 'Sistem Pencernaan', subject: 'IPA', type: 'PDF', size: '3.8 MB', uploaded: '5 hari lalu', teacher: 'Siti Aminah, S.Pd' },
-    { id: 4, title: 'Teks Eksposisi', subject: 'Bahasa Indonesia', type: 'PDF', size: '2.1 MB', uploaded: '1 minggu lalu', teacher: 'Dewi Lestari, S.Pd' },
-    { id: 5, title: 'Simple Present Tense', subject: 'Bahasa Inggris', type: 'Video', size: '45.2 MB', uploaded: '1 minggu lalu', teacher: 'Ahmad Fauzi, S.Pd' },
+  const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
+  const [viewMode, setViewMode] = useState<'list' | 'viewer'>('list');
+
+  const materials: Material[] = [
+    { id: 1, title: 'Aljabar Linear', subject: 'Matematika', type: 'PDF', size: '2.4 MB', uploaded: '2 hari lalu', teacher: 'Budi Santoso, S.Pd', fileUrl: '/files/materi-aljabar.pdf' },
+    { id: 2, title: 'Geometri Dasar', subject: 'Matematika', type: 'PPT', size: '5.1 MB', uploaded: '3 hari lalu', teacher: 'Budi Santoso, S.Pd', fileUrl: '/files/materi-geometri.pptx' },
+    { id: 3, title: 'Sistem Pencernaan', subject: 'IPA', type: 'PDF', size: '3.8 MB', uploaded: '5 hari lalu', teacher: 'Siti Aminah, S.Pd', fileUrl: '/files/sistem-pencernaan.pdf' },
+    { id: 4, title: 'Teks Eksposisi', subject: 'Bahasa Indonesia', type: 'PDF', size: '2.1 MB', uploaded: '1 minggu lalu', teacher: 'Dewi Lestari, S.Pd', fileUrl: '/files/teks-eksposisi.pdf' },
+    { id: 5, title: 'Simple Present Tense', subject: 'Bahasa Inggris', type: 'Video', size: '45.2 MB', uploaded: '1 minggu lalu', teacher: 'Ahmad Fauzi, S.Pd', fileUrl: '/files/present-tense.mp4' },
   ];
 
   const statsCards = [
@@ -22,6 +37,7 @@ export default function MateriPage() {
       case 'PDF': return 'bg-red-100 text-red-600';
       case 'PPT': return 'bg-orange-100 text-orange-600';
       case 'Video': return 'bg-blue-100 text-blue-600';
+      case 'DOC': return 'bg-indigo-100 text-indigo-600';
       default: return 'bg-gray-100 text-gray-600';
     }
   };
@@ -32,6 +48,83 @@ export default function MateriPage() {
       default: return <FileText className="w-5 h-5" />;
     }
   };
+
+  const handleView = (material: Material) => {
+    setSelectedMaterial(material);
+    setViewMode('viewer');
+  };
+
+  const handleCloseViewer = () => {
+    setViewMode('list');
+    setSelectedMaterial(null);
+  };
+
+  const handleDownload = (material: Material) => {
+    // Simulasi download
+    const link = document.createElement('a');
+    link.href = material.fileUrl;
+    link.download = `${material.title}.${material.type.toLowerCase()}`;
+    link.click();
+  };
+
+  if (viewMode === 'viewer' && selectedMaterial) {
+    return (
+      <div className="p-4 sm:p-6 lg:p-8 h-screen flex flex-col">
+        {/* Viewer Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handleCloseViewer}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <X className="w-6 h-6 text-gray-600" />
+            </button>
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">{selectedMaterial.title}</h2>
+              <p className="text-sm text-gray-600">{selectedMaterial.subject} • {selectedMaterial.teacher}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => handleDownload(selectedMaterial)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm flex items-center gap-2 hover:bg-blue-700 transition-colors"
+            >
+              <Download className="w-4 h-4" /> Download
+            </button>
+          </div>
+        </div>
+
+        {/* PDF/Document Viewer */}
+        <div className="flex-1 bg-gray-100 rounded-xl overflow-hidden">
+          {selectedMaterial.type === 'PDF' ? (
+            <iframe
+              src={`${selectedMaterial.fileUrl}#toolbar=1`}
+              className="w-full h-full"
+              title={selectedMaterial.title}
+            />
+          ) : selectedMaterial.type === 'Video' ? (
+            <video
+              src={selectedMaterial.fileUrl}
+              controls
+              className="w-full h-full"
+            />
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full text-gray-500">
+              <FileText className="w-16 h-16 mb-4" />
+              <p className="text-lg font-medium">Preview tidak tersedia untuk file {selectedMaterial.type}</p>
+              <p className="text-sm">Silakan download file untuk melihat</p>
+              <button
+                onClick={() => handleDownload(selectedMaterial)}
+                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm flex items-center gap-2 hover:bg-blue-700 transition-colors"
+              >
+                <Download className="w-4 h-4" /> Download File
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 sm:p-6 lg:p-8">
@@ -93,9 +186,20 @@ export default function MateriPage() {
                   <td className="py-3 px-4 text-sm text-gray-600">{m.size}</td>
                   <td className="py-3 px-4 text-sm text-gray-600">{m.teacher}</td>
                   <td className="py-3 px-4">
-                    <button className="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm flex items-center gap-2 hover:bg-blue-700 transition-colors">
-                      <Download className="w-3 h-3" /> Download
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleView(m)}
+                        className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm flex items-center gap-2 hover:bg-gray-200 transition-colors"
+                      >
+                        <Eye className="w-3 h-3" /> Lihat
+                      </button>
+                      <button
+                        onClick={() => handleDownload(m)}
+                        className="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm flex items-center gap-2 hover:bg-blue-700 transition-colors"
+                      >
+                        <Download className="w-3 h-3" /> Download
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
