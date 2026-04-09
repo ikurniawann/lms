@@ -1,3 +1,6 @@
+// LMS Sekolah - Landing Page
+// Updated: 2026-04-09 - Trigger redeploy
+
 'use client';
 
 import Link from 'next/link';
