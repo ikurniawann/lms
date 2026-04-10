@@ -164,7 +164,6 @@ export default function LandingPage() {
             
             <div className="hidden md:flex items-center space-x-8">
               <Link href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Fitur</Link>
-              <Link href="#pricing" className="text-gray-600 hover:text-gray-900 transition-colors">Harga</Link>
               <Link href="#testimonials" className="text-gray-600 hover:text-gray-900 transition-colors">Testimoni</Link>
               <Link href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Kontak</Link>
             </div>
@@ -302,88 +301,6 @@ export default function LandingPage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Pilih Paket yang Sesuai
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Harga transparan, tanpa biaya tersembunyi
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {pricingPlans.map((plan, index) => (
-              <div 
-                key={index}
-                className={`relative rounded-2xl p-8 ${
-                  plan.popular 
-                    ? 'bg-gradient-to-br from-red-600 to-red-700 text-white shadow-2xl shadow-red-600/30 scale-105' 
-                    : 'bg-white border-2 border-gray-200 hover:border-blue-600'
-                } transition-all duration-300`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-bold">
-                      ⭐ Paling Laris
-                    </span>
-                  </div>
-                )}
-
-                <div className="mb-6">
-                  <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
-                    {plan.name}
-                  </h3>
-                  <p className={`text-sm ${plan.popular ? 'text-red-100' : 'text-gray-600'}`}>
-                    {plan.tagline}
-                  </p>
-                </div>
-
-                <div className="mb-6">
-                  <div className="flex items-baseline">
-                    <span className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
-                      Rp {plan.price}
-                    </span>
-                    <span className={`ml-2 ${plan.popular ? 'text-red-100' : 'text-gray-600'}`}>
-                      {plan.period}
-                    </span>
-                  </div>
-                  <p className={`text-sm mt-2 ${plan.popular ? 'text-red-100' : 'text-gray-600'}`}>
-                    {plan.description}
-                  </p>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start space-x-3">
-                      <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
-                        plan.popular ? 'text-red-200' : 'text-green-500'
-                      }`} />
-                      <span className={`text-sm ${plan.popular ? 'text-white' : 'text-gray-700'}`}>
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href="/register"
-                  className={`block w-full py-4 rounded-xl font-semibold text-center transition-all ${
-                    plan.popular
-                      ? 'bg-white text-red-600 hover:bg-gray-100'
-                      : 'bg-blue-600 text-white hover:bg-blue-700'
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
-              </div>
-            ))}
           </div>
         </div>
       </section>
