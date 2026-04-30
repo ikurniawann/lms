@@ -4,19 +4,9 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import {
   BookOpen, FileText, Users, CheckSquare, TrendingUp,
-  Menu, X, Settings, ChevronRight
+  Menu, X, Settings, ChevronRight, Globe
 } from 'lucide-react';
-
-const menuItems = [
-  { icon: TrendingUp, label: 'Dashboard', href: '/dashboard-guru' },
-  { icon: BookOpen, label: 'Materi Saya', href: '/dashboard-guru/materi' },
-  { icon: FileText, label: 'Tugas', href: '/dashboard-guru/tugas' },
-  { icon: CheckSquare, label: 'Ujian', href: '/dashboard-guru/ujian' },
-  { icon: FileText, label: 'Buat Ujian', href: '/dashboard-guru/buat-ujian' },
-  { icon: Users, label: 'Siswa', href: '/dashboard-guru/students' },
-  { icon: CheckSquare, label: 'Absensi', href: '/dashboard-guru/attendance' },
-  { icon: TrendingUp, label: 'Nilai', href: '/dashboard-guru/grades' },
-];
+import { useTranslation } from '@/i18n';
 
 export default function DashboardGuruLayout({
   children,
@@ -25,6 +15,7 @@ export default function DashboardGuruLayout({
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   // Close sidebar on route change
   useEffect(() => {
@@ -40,6 +31,17 @@ export default function DashboardGuruLayout({
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
+  const menuItems = [
+    { icon: TrendingUp, label: t('guru.menu.dashboard'), href: '/dashboard-guru' },
+    { icon: BookOpen, label: t('guru.menu.materials'), href: '/dashboard-guru/materi' },
+    { icon: FileText, label: t('guru.menu.assignments'), href: '/dashboard-guru/tugas' },
+    { icon: CheckSquare, label: t('guru.menu.exams'), href: '/dashboard-guru/ujian' },
+    { icon: FileText, label: t('guru.menu.createExam'), href: '/dashboard-guru/buat-ujian' },
+    { icon: Users, label: t('guru.menu.students'), href: '/dashboard-guru/students' },
+    { icon: CheckSquare, label: t('guru.menu.attendance'), href: '/dashboard-guru/attendance' },
+    { icon: TrendingUp, label: t('guru.menu.grades'), href: '/dashboard-guru/grades' },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Mobile Header */}
@@ -48,7 +50,7 @@ export default function DashboardGuruLayout({
           <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
             <BookOpen className="w-5 h-5 text-white" />
           </div>
-          <span className="text-lg font-bold text-gray-900">LMS Guru</span>
+          <span className="text-lg font-bold text-gray-900">{t('guru.title')}</span>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -79,13 +81,13 @@ export default function DashboardGuruLayout({
             <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
               <BookOpen className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-bold text-gray-900">LMS Guru</span>
+            <span className="text-lg font-bold text-gray-900">{t('guru.title')}</span>
           </div>
         </div>
 
         {/* Mobile Close Button */}
         <div className="lg:hidden flex items-center justify-between h-16 px-4 border-b border-gray-200">
-          <span className="text-lg font-bold text-gray-900">Menu</span>
+          <span className="text-lg font-bold text-gray-900">{t('common.menu')}</span>
           <button
             onClick={() => setSidebarOpen(false)}
             className="p-2 hover:bg-gray-100 rounded-lg"
@@ -101,8 +103,8 @@ export default function DashboardGuruLayout({
               GS
             </div>
             <div className="min-w-0">
-              <div className="font-semibold text-gray-900 truncate">Budi Santoso, S.Pd</div>
-              <div className="text-xs text-gray-500">Guru Matematika</div>
+              <div className="font-semibold text-gray-900 truncate">{t('guru.profile.name')}</div>
+              <div className="text-xs text-gray-500">{t('guru.profile.role')}</div>
             </div>
           </div>
         </div>
@@ -139,7 +141,7 @@ export default function DashboardGuruLayout({
             className="flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
           >
             <Settings className="w-5 h-5" />
-            <span className="font-medium">Pengaturan</span>
+            <span className="font-medium">{t('common.settings')}</span>
           </a>
         </div>
       </aside>

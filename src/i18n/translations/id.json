@@ -1,0 +1,352 @@
+{
+  "common": {
+    "welcome": "Selamat Datang",
+    "login": "Masuk",
+    "logout": "Keluar",
+    "register": "Daftar",
+    "tryFree": "Coba Gratis",
+    "contactUs": "Hubungi Kami",
+    "seeAll": "Lihat Semua",
+    "viewAll": "Lihat Semua",
+    "close": "Tutup",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "delete": "Hapus",
+    "edit": "Edit",
+    "view": "Lihat",
+    "upload": "Unggah",
+    "download": "Unduh",
+    "create": "Buat",
+    "backToHome": "Kembali ke Beranda",
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "success": "Berhasil",
+    "search": "Cari",
+    "notifications": "Notifikasi",
+    "settings": "Pengaturan",
+    "or": "Atau",
+    "menu": "Menu",
+    "actions": "Aksi"
+  },
+  "navbar": {
+    "features": "Fitur",
+    "information": "Informasi",
+    "testimonials": "Testimoni",
+    "contact": "Kontak",
+    "product": "Produk",
+    "company": "Perusahaan",
+    "aboutUs": "Tentang Kami",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfService": "Syarat Layanan"
+  },
+  "hero": {
+    "tagline": "Platform Modern untuk Pendidikan",
+    "title": "Solusi Digital Sekolah Modern",
+    "description": "Platform terintegrasi untuk mengelola pembelajaran, absensi, keuangan, dan komunikasi sekolah dalam satu sistem yang mudah digunakan.",
+    "startNow": "Mulai Sekarang",
+    "seeFeatures": "Lihat Fitur",
+    "freeTrial": "Gratis Coba",
+    "easySetup": "Setup Mudah",
+    "support247": "Support 24/7"
+  },
+  "stats": {
+    "partnerSchools": "Partner Sekolah",
+    "trusted": "Terpercaya",
+    "activeUsers": "Pengguna Aktif",
+    "thousands": "Ribuan",
+    "teachers": "Tenaga Pengajar",
+    "integrated": "Terintegrasi",
+    "uptime": "Uptime",
+    "guaranteed": "Terjamin"
+  },
+  "features": {
+    "tagline": "Fitur Unggulan",
+    "title": "Semua yang Anda Butuhkan",
+    "subtitle": "Platform lengkap untuk mengelola seluruh aktivitas sekolah dalam satu tempat",
+    "lmsTitle": "LMS Lengkap",
+    "lmsDesc": "Upload materi, buat tugas & kuis online. Belajar jadi lebih mudah dan efisien.",
+    "qrTitle": "Absensi QR Code",
+    "qrDesc": "Sistem absensi otomatis dengan QR code. Rekap hadir, sakit, izin jadi mudah.",
+    "reportTitle": "Rapor Digital",
+    "reportDesc": "Nilai otomatis, rapor digital siap cetak. Orang tua bisa pantau real-time.",
+    "financeTitle": "Manajemen Keuangan",
+    "financeDesc": "Billing SPP otomatis, pembayaran QRIS, laporan keuangan lengkap.",
+    "parentTitle": "Portal Orang Tua",
+    "parentDesc": "Orang tua bisa lihat nilai, absensi, dan komunikasi dengan guru.",
+    "mobileTitle": "Mobile Ready",
+    "mobileDesc": "Akses dimana saja, kapan saja melalui browser mobile. Responsive design."
+  },
+  "highlights": {
+    "tagline": "Mengapa Memilih Kami?",
+    "title": "Keunggulan Platform Kami",
+    "subtitle": "Dirancang khusus untuk memudahkan pengelolaan sekolah Anda",
+    "quickSetup": "Setup Cepat",
+    "quickSetupDesc": "Siap pakai dalam hitungan menit. Tidak perlu instalasi software.",
+    "secure": "Aman & Terpercaya",
+    "secureDesc": "Data terenkripsi dan backup otomatis. Privasi terjaga.",
+    "support": "Support Penuh",
+    "supportDesc": "Tim support siap membantu kapan saja. Tutorial lengkap tersedia."
+  },
+  "testimonials": {
+    "tagline": "Testimoni Pengguna",
+    "title": "Apa Kata Mereka?",
+    "subtitle": "Testimoni dari sekolah-sekolah yang telah menggunakan platform kami"
+  },
+  "cta": {
+    "tagline": "Siap Memulai?",
+    "title": "Transformasi Sekolah Anda Sekarang",
+    "subtitle": "Bergabunglah dengan sekolah-sekolah yang telah beralih ke sistem digital. Mulai gratis, tanpa kartu kredit.",
+    "tryFreeNow": "Coba Gratis Sekarang"
+  },
+  "footer": {
+    "description": "Platform manajemen sekolah modern untuk meningkatkan kualitas pendidikan. Solusi terintegrasi untuk sekolah di Indonesia.",
+    "madeBy": "Dibuat oleh",
+    "allRightsReserved": "All rights reserved"
+  },
+  "login": {
+    "title": "Selamat Datang",
+    "subtitle": "Masuk ke LMS Sekolah Anda",
+    "email": "Email",
+    "emailPlaceholder": "nama@sekolah.sch.id",
+    "password": "Password",
+    "passwordPlaceholder": "••••••••",
+    "rememberMe": "Ingat Saya",
+    "forgotPassword": "Lupa Password?",
+    "submit": "Masuk",
+    "demoAccounts": "Demo Accounts (Klik untuk login):",
+    "admin": "Admin",
+    "teacher": "Guru",
+    "student": "Siswa",
+    "parent": "Orang Tua",
+    "clickToLogin": "Klik untuk login →",
+    "noAccount": "Belum punya akun?",
+    "contactAdmin": "Hubungi Admin Sekolah",
+    "errorLogin": "Email atau password salah"
+  },
+  "guru": {
+    "title": "LMS Guru",
+    "subtitle": "Kelola kelas, materi, tugas, dan nilai siswa.",
+    "profile": {
+      "name": "Budi Santoso, S.Pd",
+      "role": "Guru Matematika"
+    },
+    "stats": {
+      "totalClasses": "Total Kelas",
+      "totalStudents": "Total Siswa",
+      "materials": "Materi",
+      "assignments": "Tugas"
+    },
+    "quickActions": {
+      "uploadMaterial": "Upload Materi",
+      "createAssignment": "Buat Tugas",
+      "createExam": "Buat Ujian",
+      "inputGrades": "Input Nilai"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "materials": "Materi Saya",
+      "assignments": "Tugas",
+      "exams": "Ujian",
+      "createExam": "Buat Ujian",
+      "students": "Siswa",
+      "attendance": "Absensi",
+      "grades": "Nilai"
+    },
+    "myClasses": {
+      "title": "Kelas Saya",
+      "students": "siswa"
+    },
+    "recentMaterials": {
+      "title": "Materi Terbaru",
+      "downloads": "downloads",
+      "class": "Kelas"
+    },
+    "recentAssignments": {
+      "title": "Tugas Terbaru",
+      "titleHeader": "Judul",
+      "class": "Kelas",
+      "deadline": "Deadline",
+      "submitted": "Terkumpul",
+      "actions": "Aksi"
+    },
+    "modals": {
+      "uploadTitle": "Upload Materi",
+      "clickToSelect": "Klik untuk memilih file",
+      "fileTypes": "PDF, PPT, Video, dll",
+      "uploadNow": "Upload Sekarang",
+      "uploading": "Mengupload...",
+      "createAssignmentTitle": "Buat Tugas Baru",
+      "assignmentTitle": "Judul Tugas",
+      "labelTitle": "Judul",
+      "titlePlaceholder": "Masukkan judul tugas",
+      "class": "Kelas",
+      "selectClass": "Pilih Kelas",
+      "deadline": "Deadline",
+      "description": "Deskripsi",
+      "descriptionPlaceholder": "Deskripsi tugas...",
+      "create": "Buat Tugas",
+      "viewTitle": "Detail Tugas",
+      "collectionProgress": "Progress Pengumpulan",
+      "viewFullDetails": "Lihat Detail Lengkap",
+      "editTitle": "Edit Tugas",
+      "saveChanges": "Simpan Perubahan"
+    },
+    "notifications": {
+      "materialDeleted": "Materi berhasil dihapus!",
+      "assignmentDeleted": "Tugas berhasil dihapus!",
+      "assignmentUpdated": "Tugas berhasil diupdate!",
+      "materialUploaded": "Materi berhasil diupload!",
+      "assignmentCreated": "Tugas berhasil dibuat!",
+      "selectFile": "Pilih file terlebih dahulu!"
+    }
+  },
+  "admin": {
+    "title": "Dashboard Admin",
+    "subtitle": "Kelola sekolah Anda, pantau absensi, keuangan, dan performa.",
+    "menu": {
+      "dashboard": "Dashboard",
+      "students": "Siswa",
+      "teachers": "Guru",
+      "parents": "Orang Tua",
+      "classes": "Kelas",
+      "attendance": "Absensi",
+      "exams": "Ujian",
+      "finance": "Keuangan",
+      "leave": "Cuti",
+      "announcements": "Pengumuman"
+    },
+    "stats": {
+      "totalStudents": "Total Siswa",
+      "totalTeachers": "Total Guru",
+      "totalParents": "Total Orang Tua",
+      "totalClasses": "Total Kelas",
+      "attendanceToday": "Kehadiran Hari Ini",
+      "revenueThisMonth": "Pemasukan Bulan Ini",
+      "thisMonth": "Bulan Ini",
+      "vsYesterday": "vs Kemarin",
+      "vsLastMonth": "vs Bulan Lalu"
+    },
+    "activities": {
+      "title": "Aktivitas Terbaru",
+      "paidSPP": "Membayar SPP",
+      "uploadedMaterial": "Mengupload Materi",
+      "submittedLeave": "Mengajukan Cuti",
+      "createdExam": "Membuat Ujian"
+    },
+    "time": {
+      "5minAgo": "5 menit lalu",
+      "15minAgo": "15 menit lalu",
+      "1hourAgo": "1 jam lalu",
+      "2hoursAgo": "2 jam lalu",
+      "3hoursAgo": "3 jam lalu"
+    }
+  },
+  "attendance": {
+    "title": "Kehadiran Siswa",
+    "present": "Hadir",
+    "absent": "Tidak Hadir",
+    "late": "Terlambat",
+    "halfDay": "Setengah Hari",
+    "totalAttendance": "Total Kehadiran"
+  },
+  "revenue": {
+    "title": "Statistik Pemasukan",
+    "totalBilling": "Total Tagihan",
+    "collected": "Terkumpul"
+  },
+  "calendar": {
+    "title": "Kalender"
+  },
+  "siswa": {
+    "title": "Dashboard Siswa",
+    "subtitle": "Pantau jadwal, materi, tugas, dan nilai kamu.",
+    "menu": {
+      "dashboard": "Dashboard",
+      "attendance": "Absensi",
+      "schedule": "Jadwal",
+      "materials": "Materi",
+      "grades": "Nilai",
+      "assignments": "Tugas",
+      "exams": "Ujian"
+    },
+    "stats": {
+      "averageGrade": "Rata-rata Nilai",
+      "assignmentsCompleted": "Tugas Selesai",
+      "attendance": "Kehadiran",
+      "awards": "Penghargaan"
+    }
+  },
+  "schedule": {
+    "title": "Jadwal Pelajaran",
+    "monday": "Senin",
+    "tuesday": "Selasa",
+    "wednesday": "Rabu",
+    "thursday": "Kamis",
+    "friday": "Jumat"
+  },
+  "materials": {
+    "recentTitle": "Materi Terbaru"
+  },
+  "assignments": {
+    "upcomingTitle": "Tugas Mendatang",
+    "title": "Judul",
+    "subject": "Mapel",
+    "deadline": "Deadline",
+    "status": "Status",
+    "notDoneYet": "Belum dikerjakan",
+    "done": "Sudah dikerjakan",
+    "do": "Kerjakan"
+  },
+  "common": {
+    "actions": "Aksi",
+    "view": "Lihat"
+  },
+  "parent": {
+    "title": "Selamat Datang",
+    "subtitle": "Dashboard monitoring akademik anak-anak Anda.",
+    "welcome": "Selamat Datang",
+    "menu": {
+      "dashboard": "Dashboard",
+      "academic": "Akademik",
+      "attendance": "Absensi",
+      "assignments": "Tugas",
+      "exams": "Ujian",
+      "finance": "Keuangan",
+      "announcements": "Pengumuman",
+      "messages": "Pesan"
+    },
+    "welcome": "Selamat Datang",
+    "stats": {
+      "totalChildren": "Total Anak",
+      "averageGrade": "Rata-rata Nilai",
+      "attendance": "Kehadiran",
+      "pendingBills": "Tagihan Belum"
+    },
+    "child": {
+      "class": "Kelas",
+      "average": "Rata-rata",
+      "rank": "Peringkat",
+      "contactInfo": "Informasi Kontak",
+      "homeroomTeacher": "Wali Kelas",
+      "averageGrade": "Rata-rata Nilai",
+      "attendance": "Kehadiran"
+    }
+  },
+  "landing": {
+    "infoSlider": {
+      "currentInfo": "Informasi Terkini",
+      "title": "Transformasi Pendidikan Digital",
+      "subtitle": "Ikuti perkembangan terbaru dalam dunia pendidikan digital",
+      "slide1Title": "Transformasi Digital Pendidikan",
+      "slide1Subtitle": "Masa depan pendidikan Indonesia",
+      "slide1Desc": "Bergabunglah dengan ribuan sekolah yang telah beralih ke sistem digital. Tingkatkan efisiensi, transparansi, dan kualitas belajar-mengajar.",
+      "slide2Title": "Belajar Lebih Interaktif",
+      "slide2Subtitle": "Materi digital & kuis online",
+      "slide2Desc": "Guru dapat mengupload materi pembelajaran, membuat kuis interaktif, dan siswa dapat belajar kapan saja, di mana saja.",
+      "slide3Title": "Kolaborasi Orang Tua & Sekolah",
+      "slide3Subtitle": "Pantau perkembangan anak real-time",
+      "slide3Desc": "Orang tua dapat memantau nilai, absensi, dan aktivitas anak secara langsung. Komunikasi antara guru dan orang tua menjadi lebih mudah.",
+      "learnMore": "Pelajari Lebih Lanjut"
+    }
+  }
+}

@@ -2,23 +2,27 @@
 
 import {
   BookOpen, FileText, CheckSquare, TrendingUp,
-  Download, Clock, Award
+  Download, Clock, Award, Globe, LogOut
 } from 'lucide-react';
+import Link from 'next/link';
+import { useTranslation } from '@/i18n';
 
 export default function DashboardSiswa() {
+  const { locale, t, toggleLanguage } = useTranslation();
+
   const statsCards = [
-    { title: 'Rata-rata Nilai', value: '87.5', change: '+2.3', icon: TrendingUp, color: 'blue' },
-    { title: 'Tugas Selesai', value: '18/20', change: '+3', icon: CheckSquare, color: 'green' },
-    { title: 'Kehadiran', value: '96%', change: '+1%', icon: Clock, color: 'purple' },
-    { title: 'Penghargaan', value: '5', change: '+1', icon: Award, color: 'orange' },
+    { title: t('siswa.stats.averageGrade'), value: '87.5', change: '+2.3', icon: TrendingUp, color: 'blue' },
+    { title: t('siswa.stats.assignmentsCompleted'), value: '18/20', change: '+3', icon: CheckSquare, color: 'green' },
+    { title: t('siswa.stats.attendance'), value: '96%', change: '+1%', icon: Clock, color: 'purple' },
+    { title: t('siswa.stats.awards'), value: '5', change: '+1', icon: Award, color: 'orange' },
   ];
 
   const schedule = [
-    { day: 'Senin', subjects: ['Matematika (08:00)', 'IPA (10:00)', 'Bahasa Indonesia (13:00)'] },
-    { day: 'Selasa', subjects: ['IPA (08:00)', 'IPS (10:00)', 'Bahasa Inggris (13:00)'] },
-    { day: 'Rabu', subjects: ['Matematika (08:00)', 'PJOK (10:00)', 'Seni Budaya (13:00)'] },
-    { day: 'Kamis', subjects: ['Bahasa Indonesia (08:00)', 'IPA (10:00)', 'PKN (13:00)'] },
-    { day: 'Jumat', subjects: ['Upacara (07:00)', 'Agama (09:00)', 'BK (10:00)'] },
+    { day: t('schedule.monday'), subjects: ['Matematika (08:00)', 'IPA (10:00)', 'Bahasa Indonesia (13:00)'] },
+    { day: t('schedule.tuesday'), subjects: ['IPA (08:00)', 'IPS (10:00)', 'Bahasa Inggris (13:00)'] },
+    { day: t('schedule.wednesday'), subjects: ['Matematika (08:00)', 'PJOK (10:00)', 'Seni Budaya (13:00)'] },
+    { day: t('schedule.thursday'), subjects: ['Bahasa Indonesia (08:00)', 'IPA (10:00)', 'PKN (13:00)'] },
+    { day: t('schedule.friday'), subjects: ['Upacara (07:00)', 'Agama (09:00)', 'BK (10:00)'] },
   ];
 
   const recentMaterials = [
@@ -28,9 +32,9 @@ export default function DashboardSiswa() {
   ];
 
   const upcomingAssignments = [
-    { id: 1, subject: 'Matematika', title: 'Latihan Soal Bab 1', due: '2 Apr 2026', status: 'Belum dikerjakan' },
-    { id: 2, subject: 'IPA', title: 'PR Sistem Pencernaan', due: '3 Apr 2026', status: 'Belum dikerjakan' },
-    { id: 3, subject: 'Bahasa Inggris', title: 'Essay about Family', due: '4 Apr 2026', status: 'Sudah dikerjakan' },
+    { id: 1, subject: 'Matematika', title: 'Latihan Soal Bab 1', due: '2 Apr 2026', status: t('assignments.notDoneYet') },
+    { id: 2, subject: 'IPA', title: 'PR Sistem Pencernaan', due: '3 Apr 2026', status: t('assignments.notDoneYet') },
+    { id: 3, subject: 'Bahasa Inggris', title: 'Essay about Family', due: '4 Apr 2026', status: t('assignments.done') },
   ];
 
   const colorClasses: Record<string, string> = {
@@ -42,10 +46,22 @@ export default function DashboardSiswa() {
 
   return (
     <div className="p-4 sm:p-6 lg:p-8">
-      {/* Page Header */}
-      <div className="mb-6 sm:mb-8">
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Dashboard Siswa</h1>
-        <p className="text-sm sm:text-base text-gray-600">Pantau jadwal, materi, tugas, dan nilai kamu.</p>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6 sm:mb-8">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('siswa.title')}</h1>
+          <p className="text-sm sm:text-base text-gray-600">{t('siswa.subtitle')}</p>
+        </div>
+        <div className="flex items-center gap-4">
+          <button onClick={toggleLanguage} className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+            <Globe className="w-4 h-4" />
+            <span className="text-sm font-medium">{locale === 'id' ? 'EN' : 'ID'}</span>
+          </button>
+          <button className="flex items-center gap-2 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+            <LogOut className="w-4 h-4" />
+            <span className="text-sm font-medium hidden sm:inline">{t('common.logout')}</span>
+          </button>
+        </div>
       </div>
 
       {/* Stats Cards */}
@@ -72,8 +88,8 @@ export default function DashboardSiswa() {
         {/* Weekly Schedule */}
         <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-4 sm:mb-6">
-            <h3 className="text-base sm:text-lg font-bold text-gray-900">Jadwal Pelajaran</h3>
-            <button className="text-xs sm:text-sm text-blue-600 hover:underline font-medium">Lihat Semua</button>
+            <h3 className="text-base sm:text-lg font-bold text-gray-900">{t('schedule.title')}</h3>
+            <Link href="/dashboard-siswa/jadwal" className="text-xs sm:text-sm text-blue-600 hover:underline font-medium">{t('common.viewAll')}</Link>
           </div>
           <div className="space-y-3">
             {schedule.slice(0, 5).map((day, index) => (
@@ -95,8 +111,8 @@ export default function DashboardSiswa() {
         {/* Recent Materials */}
         <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-4 sm:mb-6">
-            <h3 className="text-base sm:text-lg font-bold text-gray-900">Materi Terbaru</h3>
-            <button className="text-xs sm:text-sm text-blue-600 hover:underline font-medium">Lihat Semua</button>
+            <h3 className="text-base sm:text-lg font-bold text-gray-900">{t('materials.recentTitle')}</h3>
+            <Link href="/dashboard-siswa/materi" className="text-xs sm:text-sm text-blue-600 hover:underline font-medium">{t('common.viewAll')}</Link>
           </div>
           <div className="space-y-3">
             {recentMaterials.map((material) => (
@@ -122,19 +138,19 @@ export default function DashboardSiswa() {
       {/* Upcoming Assignments */}
       <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
         <div className="flex items-center justify-between mb-4 sm:mb-6">
-          <h3 className="text-base sm:text-lg font-bold text-gray-900">Tugas Mendatang</h3>
-          <button className="text-xs sm:text-sm text-blue-600 hover:underline font-medium">Lihat Semua</button>
+          <h3 className="text-base sm:text-lg font-bold text-gray-900">{t('assignments.upcomingTitle')}</h3>
+          <Link href="/dashboard-siswa/tugas" className="text-xs sm:text-sm text-blue-600 hover:underline font-medium">{t('common.viewAll')}</Link>
         </div>
         
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Judul</th>
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Mapel</th>
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Deadline</th>
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Status</th>
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Actions</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">{t('assignments.title')}</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">{t('assignments.subject')}</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">{t('assignments.deadline')}</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">{t('assignments.status')}</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">{t('common.actions')}</th>
               </tr>
             </thead>
             <tbody>
@@ -144,17 +160,13 @@ export default function DashboardSiswa() {
                   <td className="py-3 px-4 text-sm text-gray-600">{assignment.subject}</td>
                   <td className="py-3 px-4 text-sm text-gray-600">{assignment.due}</td>
                   <td className="py-3 px-4">
-                    <span className={`text-sm font-medium px-3 py-1 rounded-full ${
-                      assignment.status === 'Sudah dikerjakan'
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-yellow-100 text-yellow-700'
-                    }`}>
+                    <span className={`text-sm font-medium px-3 py-1 rounded-full ${assignment.status === t('assignments.done') ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
                       {assignment.status}
                     </span>
                   </td>
                   <td className="py-3 px-4">
                     <button className="text-sm text-blue-600 hover:underline font-medium">
-                      {assignment.status === 'Sudah dikerjakan' ? 'Lihat' : 'Kerjakan'}
+                      {assignment.status === t('assignments.done') ? t('common.view') : t('assignments.do')}
                     </button>
                   </td>
                 </tr>
