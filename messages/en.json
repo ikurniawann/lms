@@ -1,0 +1,334 @@
+{
+  "Common": {
+    "welcome": "Welcome",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "tryFree": "Try Free",
+    "contactUs": "Contact Us",
+    "seeAll": "See All",
+    "viewAll": "View All",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "upload": "Upload",
+    "download": "Download",
+    "create": "Create",
+    "backToHome": "Back to Home",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "search": "Search",
+    "notifications": "Notifications",
+    "settings": "Settings"
+  },
+  "Navbar": {
+    "features": "Features",
+    "information": "Information",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "product": "Product",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "Hero": {
+    "tagline": "Modern Platform for Education",
+    "title": "Digital Solution for {schoolModern}",
+    "schoolModern": "Modern Schools",
+    "description": "Integrated platform to manage learning, attendance, finance, and school communication in one easy-to-use system.",
+    "startNow": "Start Now",
+    "seeFeatures": "See Features",
+    "freeTrial": "Free Trial",
+    "easySetup": "Easy Setup",
+    "support247": "24/7 Support"
+  },
+  "Stats": {
+    "partnerSchools": "Partner Schools",
+    "trusted": "Trusted",
+    "activeUsers": "Active Users",
+    "thousands": "Thousands",
+    "teachers": "Teachers",
+    "integrated": "Integrated",
+    "uptime": "Uptime",
+    "guaranteed": "Guaranteed"
+  },
+  "InfoSlider": {
+    "currentInfo": "Current Information",
+    "title": "Digital Education Transformation",
+    "subtitle": "Follow the latest developments in digital education",
+    "slide1Title": "Digital Education Transformation",
+    "slide1Subtitle": "The future of Indonesian education",
+    "slide1Desc": "Join thousands of schools that have switched to digital systems. Improve efficiency, transparency, and learning quality.",
+    "slide2Title": "More Interactive Learning",
+    "slide2Subtitle": "Digital materials & online quizzes",
+    "slide2Desc": "Teachers can upload learning materials, create interactive quizzes, and students can learn anytime, anywhere.",
+    "slide3Title": "Parent & School Collaboration",
+    "slide3Subtitle": "Monitor your child's progress in real-time",
+    "slide3Desc": "Parents can monitor grades, attendance, and child's activities directly. Communication between teachers and parents becomes easier.",
+    "learnMore": "Learn More"
+  },
+  "Features": {
+    "tagline": "Featured Features",
+    "title": "Everything You Need",
+    "subtitle": "Complete platform to manage all school activities in one place",
+    "lmsTitle": "Complete LMS",
+    "lmsDesc": "Upload materials, create assignments & online quizzes. Learning becomes easier and more efficient.",
+    "qrTitle": "QR Code Attendance",
+    "qrDesc": "Automatic attendance system with QR codes. Recap present, sick, permit becomes easy.",
+    "reportTitle": "Digital Report Cards",
+    "reportDesc": "Automatic grades, digital report cards ready to print. Parents can monitor in real-time.",
+    "financeTitle": "Finance Management",
+    "financeDesc": "Automatic SPP billing, QRIS payments, complete financial reports.",
+    "parentTitle": "Parent Portal",
+    "parentDesc": "Parents can view grades, attendance, and communicate with teachers.",
+    "mobileTitle": "Mobile Ready",
+    "mobileDesc": "Access anywhere, anytime via mobile browser. Responsive design."
+  },
+  "Highlights": {
+    "tagline": "Why Choose Us?",
+    "title": "Our Platform Advantages",
+    "subtitle": "Designed specifically to make managing your school easier",
+    "quickSetup": "Quick Setup",
+    "quickSetupDesc": "Ready to use in minutes. No software installation needed.",
+    "secure": "Secure & Trusted",
+    "secureDesc": "Encrypted data and automatic backups. Privacy protected.",
+    "support": "Full Support",
+    "supportDesc": "Support team ready to help anytime. Complete tutorials available."
+  },
+  "Testimonials": {
+    "tagline": "User Testimonials",
+    "title": "What They Say?",
+    "subtitle": "Testimonials from schools that have used our platform"
+  },
+  "CTA": {
+    "tagline": "Ready to Start?",
+    "title": "Transform Your School Now",
+    "subtitle": "Join schools that have switched to digital systems. Start free, no credit card required.",
+    "tryFreeNow": "Try Free Now",
+    "contactUs": "Contact Us"
+  },
+  "Footer": {
+    "description": "Modern school management platform to improve education quality. Integrated solution for schools in Indonesia.",
+    "madeBy": "Made by",
+    "allRightsReserved": "All rights reserved",
+    "product": "Product",
+    "features": "Features",
+    "information": "Information",
+    "demo": "Demo",
+    "changelog": "Changelog",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "Login": {
+    "title": "Welcome",
+    "subtitle": "Login to Your School LMS",
+    "email": "Email",
+    "emailPlaceholder": "name@school.sch.id",
+    "password": "Password",
+    "passwordPlaceholder": "••••••••",
+    "rememberMe": "Remember Me",
+    "forgotPassword": "Forgot Password?",
+    "submit": "Login",
+    "loading": "Loading...",
+    "demoAccounts": "Demo Accounts (Click to login):",
+    "admin": "Admin",
+    "teacher": "Teacher",
+    "student": "Student",
+    "parent": "Parent",
+    "clickToLogin": "Click to login →",
+    "noAccount": "Don't have an account?",
+    "contactAdmin": "Contact School Admin",
+    "errorLogin": "Email or password is incorrect"
+  },
+  "Dashboard": {
+    "adminTitle": "Admin Dashboard",
+    "adminSubtitle": "Manage your school, monitor attendance, finance, and performance.",
+    "teacherTitle": "Teacher Dashboard",
+    "teacherSubtitle": "Manage classes, materials, assignments, and student grades.",
+    "studentTitle": "Student Dashboard",
+    "studentSubtitle": "Monitor your schedule, materials, assignments, and grades.",
+    "parentTitle": "Welcome",
+    "parentSubtitle": "Academic monitoring dashboard for your children. Click child's name to view activity details."
+  },
+  "AdminStats": {
+    "totalStudents": "Total Students",
+    "totalTeachers": "Total Teachers",
+    "totalParents": "Total Parents",
+    "totalClasses": "Total Classes",
+    "attendanceToday": "Attendance Today",
+    "revenueThisMonth": "Revenue This Month",
+    "thisMonth": "This Month",
+    "vsYesterday": "vs Yesterday",
+    "vsLastMonth": "vs Last Month"
+  },
+  "Attendance": {
+    "title": "Student Attendance",
+    "present": "Present",
+    "absent": "Absent",
+    "late": "Late",
+    "halfDay": "Half Day",
+    "totalAttendance": "Total Attendance"
+  },
+  "Revenue": {
+    "title": "Revenue Statistics",
+    "totalBilling": "Total Billing",
+    "collected": "Collected",
+    "month": "Month"
+  },
+  "Activities": {
+    "title": "Recent Activities",
+    "paidSPP": "Paid SPP",
+    "uploadedMaterial": "Uploaded Material",
+    "submittedLeave": "Submitted Leave",
+    "createdExam": "Created Exam"
+  },
+  "Calendar": {
+    "title": "Calendar"
+  },
+  "TeacherStats": {
+    "totalClasses": "Total Classes",
+    "totalStudents": "Total Students",
+    "materials": "Materials",
+    "assignments": "Assignments"
+  },
+  "QuickActions": {
+    "uploadMaterial": "Upload Material",
+    "createAssignment": "Create Assignment",
+    "createExam": "Create Exam",
+    "inputGrades": "Input Grades"
+  },
+  "MyClasses": {
+    "title": "My Classes",
+    "students": "students",
+    "schedule": "Schedule"
+  },
+  "RecentMaterials": {
+    "title": "Recent Materials",
+    "downloads": "downloads",
+    "class": "Class"
+  },
+  "RecentAssignments": {
+    "title": "Recent Assignments",
+    "titleHeader": "Title",
+    "class": "Class",
+    "deadline": "Deadline",
+    "submitted": "Submitted",
+    "actions": "Actions"
+  },
+  "StudentStats": {
+    "averageGrade": "Average Grade",
+    "assignmentsCompleted": "Assignments Completed",
+    "attendance": "Attendance",
+    "awards": "Awards"
+  },
+  "Schedule": {
+    "title": "Class Schedule",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday"
+  },
+  "UpcomingAssignments": {
+    "title": "Upcoming Assignments",
+    "subject": "Subject",
+    "deadline": "Deadline",
+    "status": "Status",
+    "notDoneYet": "Not done yet",
+    "done": "Completed",
+    "do": "Do",
+    "view": "View"
+  },
+  "ParentStats": {
+    "totalChildren": "Total Children",
+    "averageGrade": "Average Grade",
+    "attendance": "Attendance",
+    "pendingBills": "Pending Bills"
+  },
+  "Children": {
+    "class": "Class",
+    "nis": "NIS",
+    "average": "Average",
+    "attendance": "Attendance",
+    "rank": "Rank"
+  },
+  "UpcomingEvents": {
+    "title": "Upcoming Events",
+    "class": "Class"
+  },
+  "Notifications": {
+    "title": "Notifications",
+    "viewAll": "View All",
+    "urgent": "Urgent"
+  },
+  "ChildDetail": {
+    "summary": "Summary",
+    "activities": "Activities",
+    "grades": "Grades",
+    "attendance": "Attendance",
+    "averageGrade": "Average Grade",
+    "attendancePercent": "Attendance",
+    "rank": "Rank",
+    "contactInfo": "Contact Information",
+    "homeroomTeacher": "Homeroom Teacher",
+    "recentActivities": "Recent Activities",
+    "subject": "Subject",
+    "teacher": "Teacher",
+    "grade": "Grade",
+    "status": "Status",
+    "veryGood": "Very Good",
+    "good": "Good",
+    "fair": "Fair",
+    "month": "Month",
+    "present": "Present",
+    "sick": "Sick",
+    "absent": "Absent",
+    "percentage": "Percentage",
+    "totalAttendance": "Total Attendance",
+    "overallAverage": "Overall Average"
+  },
+  "UploadModal": {
+    "title": "Upload Material",
+    "clickToSelect": "Click to select file",
+    "fileTypes": "PDF, PPT, Video, etc",
+    "uploadNow": "Upload Now",
+    "uploading": "Uploading..."
+  },
+  "CreateAssignmentModal": {
+    "title": "Create New Assignment",
+    "assignmentTitle": "Assignment Title",
+    "titlePlaceholder": "Enter assignment title",
+    "class": "Class",
+    "selectClass": "Select Class",
+    "deadline": "Deadline",
+    "description": "Description",
+    "descriptionPlaceholder": "Assignment description...",
+    "cancel": "Cancel",
+    "createAssignment": "Create Assignment"
+  },
+  "ViewAssignmentModal": {
+    "title": "Assignment Details",
+    "titleHeader": "Title",
+    "class": "Class",
+    "deadline": "Deadline",
+    "collectionProgress": "Collection Progress",
+    "viewFullDetails": "View Full Details",
+    "close": "Close"
+  },
+  "EditAssignmentModal": {
+    "title": "Edit Assignment",
+    "assignmentTitle": "Assignment Title",
+    "class": "Class",
+    "deadline": "Deadline",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes"
+  }
+}

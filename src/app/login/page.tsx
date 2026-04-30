@@ -3,10 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { BookOpen, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
-
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export default function LoginPage() {
+  const t = useTranslations();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +16,6 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  // Demo authentication data
   const demoUsers: Record<string, { password: string; role: string; redirect: string }> = {
     'admin@smpn1.sch.id': { password: 'password', role: 'admin', redirect: '/dashboard' },
     'guru@smpn1.sch.id': { password: 'password', role: 'guru', redirect: '/dashboard-guru' },
@@ -43,7 +44,7 @@ export default function LoginPage() {
     const user = demoUsers[email];
     
     if (!user || user.password !== password) {
-      setError('Email atau password salah');
+      setError(t('Login.errorLogin'));
       setLoading(false);
       return;
     }
@@ -61,14 +62,17 @@ export default function LoginPage() {
       </div>
 
       <div className="relative w-full max-w-md">
-        {/* Back Button */}
-        <Link 
-          href="/"
-          className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm font-medium">Kembali ke Beranda</span>
-        </Link>
+        {/* Back Button & Language Switcher */}
+        <div className="flex items-center justify-between mb-6">
+          <Link 
+            href="/"
+            className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span className="text-sm font-medium">{t('Common.backToHome')}</span>
+          </Link>
+          <LanguageSwitcher />
+        </div>
 
         {/* Login Card */}
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
@@ -77,8 +81,8 @@ export default function LoginPage() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl mb-4">
               <BookOpen className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Selamat Datang</h1>
-            <p className="text-gray-600">Masuk ke LMS Sekolah Anda</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">{t('Login.title')}</h1>
+            <p className="text-gray-600">{t('Login.subtitle')}</p>
           </div>
 
           {/* Login Form */}
@@ -93,7 +97,7 @@ export default function LoginPage() {
             {/* Email */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email
+                {t('Login.email')}
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -102,7 +106,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="nama@sekolah.sch.id"
+                  placeholder={t('Login.emailPlaceholder')}
                   required
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
@@ -112,7 +116,7 @@ export default function LoginPage() {
             {/* Password */}
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
+                {t('Login.password')}
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -121,7 +125,7 @@ export default function LoginPage() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder={t('Login.passwordPlaceholder')}
                   required
                   className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
@@ -142,13 +146,13 @@ export default function LoginPage() {
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
-                <span className="text-sm text-gray-600">Ingat Saya</span>
+                <span className="text-sm text-gray-600">{t('Login.rememberMe')}</span>
               </label>
               <Link 
                 href="/forgot-password"
                 className="text-sm text-blue-600 hover:underline font-medium"
               >
-                Lupa Password?
+                {t('Login.forgotPassword')}
               </Link>
             </div>
 
@@ -164,10 +168,10 @@ export default function LoginPage() {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                   </svg>
-                  <span>Memuat...</span>
+                  <span>{t('Login.loading')}</span>
                 </span>
               ) : (
-                'Masuk'
+                t('Login.submit')
               )}
             </button>
           </form>
@@ -178,49 +182,49 @@ export default function LoginPage() {
               <div className="w-full border-t border-gray-200" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-gray-500">Atau</span>
+              <span className="px-4 bg-white text-gray-500">{t('Common.or')}</span>
             </div>
           </div>
 
-          {/* Demo Accounts - Clickable Shortcuts */}
+          {/* Demo Accounts */}
           <div className="space-y-3">
-            <p className="text-xs text-gray-500 text-center mb-2">Demo Accounts (Klik untuk login):</p>
+            <p className="text-xs text-gray-500 text-center mb-2">{t('Login.demoAccounts')}</p>
             <div className="grid grid-cols-2 gap-2">
               <button
                 type="button"
                 onClick={() => handleQuickLogin('admin@smpn1.sch.id')}
                 className="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition-all text-left cursor-pointer group"
               >
-                <div className="text-xs font-medium text-blue-900 mb-1 group-hover:text-blue-800">👨‍💼 Admin</div>
+                <div className="text-xs font-medium text-blue-900 mb-1 group-hover:text-blue-800">👨‍💼 {t('Login.admin')}</div>
                 <div className="text-xs text-blue-700">admin@smpn1.sch.id</div>
-                <div className="text-[10px] text-blue-500 mt-1">Klik untuk login →</div>
+                <div className="text-[10px] text-blue-500 mt-1">{t('Login.clickToLogin')}</div>
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickLogin('guru@smpn1.sch.id')}
                 className="p-3 bg-green-50 hover:bg-green-100 rounded-lg border border-green-200 transition-all text-left cursor-pointer group"
               >
-                <div className="text-xs font-medium text-green-900 mb-1 group-hover:text-green-800">👨‍🏫 Guru</div>
+                <div className="text-xs font-medium text-green-900 mb-1 group-hover:text-green-800">👨‍🏫 {t('Login.teacher')}</div>
                 <div className="text-xs text-green-700">guru@smpn1.sch.id</div>
-                <div className="text-[10px] text-green-500 mt-1">Klik untuk login →</div>
+                <div className="text-[10px] text-green-500 mt-1">{t('Login.clickToLogin')}</div>
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickLogin('siswa@smpn1.sch.id')}
                 className="p-3 bg-purple-50 hover:bg-purple-100 rounded-lg border border-purple-200 transition-all text-left cursor-pointer group"
               >
-                <div className="text-xs font-medium text-purple-900 mb-1 group-hover:text-purple-800">👨‍🎓 Siswa</div>
+                <div className="text-xs font-medium text-purple-900 mb-1 group-hover:text-purple-800">👨‍🎓 {t('Login.student')}</div>
                 <div className="text-xs text-purple-700">siswa@smpn1.sch.id</div>
-                <div className="text-[10px] text-purple-500 mt-1">Klik untuk login →</div>
+                <div className="text-[10px] text-purple-500 mt-1">{t('Login.clickToLogin')}</div>
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickLogin('parent@smpn1.sch.id')}
                 className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg border border-orange-200 transition-all text-left cursor-pointer group"
               >
-                <div className="text-xs font-medium text-orange-900 mb-1 group-hover:text-orange-800">👨‍👩‍👧‍👦 Parent</div>
+                <div className="text-xs font-medium text-orange-900 mb-1 group-hover:text-orange-800">👨‍👩‍👧‍👦 {t('Login.parent')}</div>
                 <div className="text-xs text-orange-700">parent@smpn1.sch.id</div>
-                <div className="text-[10px] text-orange-500 mt-1">Klik untuk login →</div>
+                <div className="text-[10px] text-orange-500 mt-1">{t('Login.clickToLogin')}</div>
               </button>
             </div>
           </div>
@@ -229,9 +233,9 @@ export default function LoginPage() {
         {/* Footer */}
         <div className="text-center mt-6">
           <p className="text-sm text-gray-600">
-            Belum punya akun?{' '}
+            {t('Login.noAccount')}{' '}
             <Link href="/register" className="text-blue-600 hover:underline font-medium">
-              Hubungi Admin Sekolah
+              {t('Login.contactAdmin')}
             </Link>
           </p>
         </div>

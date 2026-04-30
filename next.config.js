@@ -1,13 +1,12 @@
 /** @type {import('next').NextConfig} */
+const createNextIntlPlugin = require('next-intl/plugin');
+
+const withNextIntl = createNextIntlPlugin('./i18n.ts');
+
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**.supabase.co',
-      },
-    ],
+    domains: ['images.unsplash.com', 'web.komdigi.go.id'],
   },
 };
 
-module.exports = nextConfig;
+module.exports = withNextIntl(nextConfig);
